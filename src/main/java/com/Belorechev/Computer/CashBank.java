@@ -13,7 +13,6 @@ public class CashBank {
         bank = new TreeMap<>();
     }
 
-    //TODO sooo Test
     public void add(String currency, Integer value, final Integer number) {
 
         Map<Integer, Integer> banknotesOfCurrency;
@@ -84,7 +83,12 @@ public class CashBank {
 
             copyBanknotesOfCurrency = cleanZeroCountBanknotes(copyBanknotesOfCurrency);
 
-            bank.put(currency, copyBanknotesOfCurrency);
+            if (!copyBanknotesOfCurrency.isEmpty()){
+                bank.put(currency, copyBanknotesOfCurrency);
+            }
+            else{
+                bank.remove(currency);
+            }
 
             return Optional.of(
                     banknotesToString(banknotesForOutput));
@@ -104,8 +108,9 @@ public class CashBank {
 
             int valueOfBanknotes = iter.next();
 
-            if (allBanknotesOfCurrency.get(valueOfBanknotes) == 0)
+            if (allBanknotesOfCurrency.get(valueOfBanknotes) == 0) {
                 allBanknotesOfCurrency.remove(valueOfBanknotes);
+            }
 
         }
 
@@ -123,8 +128,9 @@ public class CashBank {
         while (iter.hasNext()) {
 
             int valueOfBanknotes = iter.next();
-            if (max <= valueOfBanknotes && valueOfBanknotes <= amount && allBanknotesOfCurrency.get(valueOfBanknotes) > 0)
+            if (max <= valueOfBanknotes && valueOfBanknotes <= amount && allBanknotesOfCurrency.get(valueOfBanknotes) > 0) {
                 max = valueOfBanknotes;
+            }
         }
 
         Optional<Integer> returnValue = max != Integer.MIN_VALUE ? Optional.of(max) : Optional.empty();
@@ -164,6 +170,11 @@ public class CashBank {
         }
 
         return message.toString();
+    }
+
+    public Map<String, Map<Integer, Integer>> getBank() {
+
+        return bank;
     }
 
 }

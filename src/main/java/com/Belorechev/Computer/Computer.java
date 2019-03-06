@@ -4,6 +4,8 @@ import com.Belorechev.Utills.Dictionary;
 
 import java.util.Optional;
 
+//TODO Get Cash by small or big banknotes
+
 public class Computer {
 
     private CashBank cashBank;
@@ -21,31 +23,36 @@ public class Computer {
         String[] operation = command.split(" ");
         String status = null;
 
-        switch (operation[0]) {
-            case "+":
-                status = addNotes(operation);
-                break;
+        try {
+            switch (operation[0]) {
+                case "+":
+                    status = addNotes(operation);
+                    break;
 
-            case "-":
-                status = getCash(operation);
-                break;
+                case "-":
+                    status = getCash(operation);
+                    break;
 
-            case "?":
-                status = printCash(operation);
-                break;
+                case "?":
+                    status = printCash(operation);
+                    break;
 
-            case "exit":
-                status = Dictionary.EXIT_STATUS;
-                break;
+                case "exit":
+                    status = Dictionary.EXIT_STATUS;
+                    break;
 
-            default:
-                status = Dictionary.ERROR_STATUS;
+                default:
+                    status = Dictionary.ERROR_STATUS;
+            }
+        }
+        catch ( NumberFormatException e){
+            return  Dictionary.ERROR_STATUS;
         }
 
         return status;
     }
 
-    private String addNotes(String[] operation) {
+    private String addNotes(String[] operation) throws NumberFormatException{
 
         if (!isValidCountArguments(operation, 4))
             return Dictionary.ERROR_STATUS;
@@ -66,7 +73,7 @@ public class Computer {
 
     }
 
-    private String getCash(String[] operation) {
+    private String getCash(String[] operation)  throws NumberFormatException{
 
         if (!isValidCountArguments(operation, 3))
             return Dictionary.ERROR_STATUS;
