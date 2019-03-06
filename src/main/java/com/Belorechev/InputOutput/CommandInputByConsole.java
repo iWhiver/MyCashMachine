@@ -1,19 +1,21 @@
 package com.Belorechev.InputOutput;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class InputCommand {
+public class InputCommandByConsole implements InputCommand{
 
     private BufferedReader br;
 
-    public InputCommand() {
+    public InputCommandByConsole() {
 
         br = new BufferedReader(new InputStreamReader(System.in));
 
     }
 
-    public String getNext() throws Exception {
+    @Override
+    public String getNext() throws IOException {
 
         return br.readLine();
     }

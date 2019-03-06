@@ -1,7 +1,8 @@
 package com.Belorechev.InputOutput;
 
-public class OutputMessage {
+public class OutputMessageByConsole implements OutputMessage {
 
+    @Override
     public void printMessage(String output) {
 
         System.out.println(output);
