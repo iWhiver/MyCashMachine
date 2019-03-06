@@ -2,22 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f6cb01d-bab1-4816-bf16-5f6e94b1bb06" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/TestCashMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10/taskHistory/taskHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10/taskHistory/taskHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Belorechev/Computer/CashBank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Belorechev/Computer/CashBank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Belorechev/Computer/Computer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Belorechev/Computer/Computer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Belorechev/Utills/Dictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Belorechev/Utills/Dictionary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/META-INF/com.Belorechev.MyCashMachine.main.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/classes/META-INF/com.Belorechev.MyCashMachine.main.kotlin_module" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
+    <ignored path=".idea/" />
+    <ignored path="C:\Users\IvanBelorechev\IdeaProjects\MyCashMachine\.idea\shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager" show_ignored="true" />
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/MyCashMachine$FunctionalTest.ic" NAME="FunctionalTest Coverage Results" MODIFIED="1551774020438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/MyCashMachine$TestCashMachine.ic" NAME="TestCashMachine Coverage Results" MODIFIED="1551850706430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
@@ -56,7 +72,19 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/Belorechev/LifeCircle.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="198">
-              <caret line="12" column="8" lean-forward="true" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+              <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/TestCashMachine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="526">
+              <caret line="43" column="5" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -65,13 +93,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/TestCashMachine.java">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="333" lean-forward="true" selection-start-line="333" selection-end-line="333" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="34">
+              <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="5" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
             </state>
           </provider>
         </entry>
@@ -92,7 +126,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/Belorechev/Utills/Dictionary.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="9" column="43" lean-forward="true" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+              <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -101,7 +135,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/Belorechev/Computer/CashBank.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
-              <caret line="126" lean-forward="true" selection-start-line="126" selection-end-line="126" />
+              <caret line="126" selection-start-line="126" selection-end-line="126" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -112,8 +146,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/Belorechev/Computer/Computer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            <state relative-caret-position="102">
+              <caret line="90" column="9" selection-start-line="90" selection-start-column="9" selection-end-line="90" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3157#3158#0" expanded="true" />
@@ -177,6 +211,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/Belorechev/Computer/Computer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/Belorechev/Computer/CashBank.java" />
         <option value="$PROJECT_DIR$/src/test/java/TestCashMachine.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -348,68 +383,12 @@
             <path>
               <item name="MyCashMachine" type="b2602c69:ProjectViewProjectNode" />
               <item name="MyCashMachine" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="gradle" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MyCashMachine" type="b2602c69:ProjectViewProjectNode" />
               <item name="MyCashMachine" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyCashMachine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyCashMachine" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyCashMachine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyCashMachine" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Belorechev" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyCashMachine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyCashMachine" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Belorechev" type="462c0819:PsiDirectoryNode" />
-              <item name="Computer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyCashMachine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyCashMachine" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Belorechev" type="462c0819:PsiDirectoryNode" />
-              <item name="InputOutput" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyCashMachine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyCashMachine" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Belorechev" type="462c0819:PsiDirectoryNode" />
-              <item name="Utills" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyCashMachine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyCashMachine" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyCashMachine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyCashMachine" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -468,7 +447,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551850868754" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551852616630" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -601,7 +580,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47441000" />
+    <option name="totallyTimeSpent" value="48752000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -614,7 +593,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4983871" visible="true" weight="0.2553305" />
       <window_info id="Structure" order="1" sideWeight="0.5016129" side_tool="true" weight="0.2553305" />
@@ -623,22 +601,22 @@
       <window_info id="Capture Tool" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" sideWeight="0.5016129" side_tool="true" weight="0.2553305" />
-      <window_info anchor="bottom" id="SonarLint" sideWeight="0.4989339" weight="0.32900432" />
-      <window_info anchor="bottom" id="PMD" sideWeight="0.49946696" weight="0.32900432" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32900432" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49840087" visible="true" weight="0.32900432" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49840087" weight="0.32900432" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4989339" weight="0.32900432" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.32900432" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49946696" weight="0.20454545" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49946696" visible="true" weight="0.20454545" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50159913" side_tool="true" weight="0.32900432" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32792208" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="bottom" id="Version Control" order="13" weight="0.32900432" />
+      <window_info anchor="bottom" id="SonarLint" order="14" sideWeight="0.4989339" weight="0.32900432" />
+      <window_info anchor="bottom" id="PMD" order="15" sideWeight="0.49946696" weight="0.32900432" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -717,22 +695,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/Belorechev/Utills/DictionaryWindows.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/Belorechev/Utills/DictionaryInterface.java" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/a6c32b40bf3d76eca54e3c601e5d1470c86fcdfa/junit-4.12-sources.jar!/org/junit/runner/JUnitCore.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -789,7 +753,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/Belorechev/LifeCircle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
-          <caret line="12" column="8" lean-forward="true" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -816,14 +780,14 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/Belorechev/Utills/Dictionary.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="9" column="43" lean-forward="true" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/Belorechev/Computer/Computer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="102">
+          <caret line="90" column="9" selection-start-line="90" selection-start-column="9" selection-end-line="90" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3157#3158#0" expanded="true" />
@@ -835,7 +799,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/Belorechev/Computer/CashBank.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="126" lean-forward="true" selection-start-line="126" selection-end-line="126" />
+          <caret line="126" selection-start-line="126" selection-end-line="126" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -844,11 +808,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/TestCashMachine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="333" lean-forward="true" selection-start-line="333" selection-end-line="333" />
+        <state relative-caret-position="526">
+          <caret line="43" column="5" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="10" lean-forward="true" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="5" selection-end-column="5" />
         </state>
       </provider>
     </entry>
