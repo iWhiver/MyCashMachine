@@ -1,6 +1,6 @@
-package com.belorechev.computer;
+package com.belorechev.cashmachine.computer;
 
-import com.belorechev.utility.Dictionary;
+import com.belorechev.cashmachine.utility.Dictionary;
 
 interface Command {
 

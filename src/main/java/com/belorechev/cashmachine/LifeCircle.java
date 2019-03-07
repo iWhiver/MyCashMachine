@@ -1,11 +1,11 @@
-package com.belorechev;
+package com.belorechev.cashmachine;
 
-import com.belorechev.computer.Computer;
-import com.belorechev.input_output.CommandInput;
-import com.belorechev.input_output.CommandInputByConsole;
-import com.belorechev.input_output.MessageOutputByConsole;
-import com.belorechev.input_output.MessageOutput;
-import com.belorechev.utility.Dictionary;
+import com.belorechev.cashmachine.computer.Computer;
+import com.belorechev.cashmachine.input_output.CommandInput;
+import com.belorechev.cashmachine.input_output.CommandInputByConsole;
+import com.belorechev.cashmachine.input_output.MessageOutputByConsole;
+import com.belorechev.cashmachine.input_output.MessageOutput;
+import com.belorechev.cashmachine.utility.Dictionary;
 
 import java.io.IOException;
 

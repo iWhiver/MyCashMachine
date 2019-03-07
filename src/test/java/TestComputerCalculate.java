@@ -1,4 +1,4 @@
-import com.belorechev.utility.Dictionary;
+import com.belorechev.cashmachine.utility.Dictionary;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

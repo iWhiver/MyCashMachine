@@ -1,6 +1,6 @@
-package com.belorechev.data;
+package com.belorechev.cashmachine.data;
 
-import com.belorechev.utility.Dictionary;
+import com.belorechev.cashmachine.utility.Dictionary;
 
 import java.util.*;
 
@@ -116,7 +116,7 @@ public class CashBank {
 
             String line = String.format("%d %d", value, number);
             message.append(line);
-            message.append(Dictionary.NEW_LINE);
+            message.append(com.belorechev.cashmachine.utility.Dictionary.NEW_LINE);
         }
 
         return message.toString();

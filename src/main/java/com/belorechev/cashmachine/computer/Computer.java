@@ -1,7 +1,7 @@
-package com.belorechev.computer;
+package com.belorechev.cashmachine.computer;
 
-import com.belorechev.data.CashBank;
-import com.belorechev.utility.Dictionary;
+import com.belorechev.cashmachine.data.CashBank;
+import com.belorechev.cashmachine.utility.Dictionary;
 
 import java.util.ArrayList;
 import java.util.List;

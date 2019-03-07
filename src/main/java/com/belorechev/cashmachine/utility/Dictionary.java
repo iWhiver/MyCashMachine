@@ -1,4 +1,4 @@
-package com.belorechev.utility;
+package com.belorechev.cashmachine.utility;
 
 //TODO Change value NEW_LINE for testing
 public final class Dictionary {

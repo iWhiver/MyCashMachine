@@ -1,4 +1,4 @@
-package com.belorechev.input_output;
+package com.belorechev.cashmachine.input_output;
 
 public class MessageOutputByConsole implements MessageOutput {
 

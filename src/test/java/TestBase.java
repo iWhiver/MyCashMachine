@@ -1,6 +1,6 @@
-import com.belorechev.computer.Computer;
-import com.belorechev.data.CashBank;
-import com.belorechev.utility.Dictionary;
+import com.belorechev.cashmachine.computer.Computer;
+import com.belorechev.cashmachine.data.CashBank;
+import com.belorechev.cashmachine.utility.Dictionary;
 import org.junit.Before;
 
 import java.util.Map;
