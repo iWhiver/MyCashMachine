@@ -1,6 +1,6 @@
-package com.Belorechev.Computer;
+package com.belorechev.data;
 
-import com.Belorechev.Utills.Dictionary;
+import com.belorechev.utility.Dictionary;
 
 import java.util.*;
 
@@ -22,25 +22,29 @@ public class CashBank {
             banknotesOfCurrency = bank.get(currency);
 
             if (banknotesOfCurrency.containsKey(value)) {
-                banknotesOfCurrency.compute(value, (k, v) -> v + number);
+                banknotesOfCurrency.compute(value,  (k, v) ->  v + number);
             } else {
                 banknotesOfCurrency.put(value, number);
             }
 
         } else {
-            banknotesOfCurrency = new TreeMap();
+            banknotesOfCurrency = new TreeMap<>();
             banknotesOfCurrency.put(value, number);
         }
 
         bank.put(currency, banknotesOfCurrency);
     }
 
+
+
     //TODO Test
     //TODO take banknotes with packs without each banknotes
-    public Optional<String> get(String currency, Integer amount) {
 
-        if (!bank.containsKey(currency))
+    public Optional<String> get(String currency, int amount) {
+
+        if (!bank.containsKey(currency)) {
             return Optional.empty();
+        }
 
         Map<Integer, Integer> realBanknotesOfCurrency = bank.get(currency);
 
@@ -50,29 +54,25 @@ public class CashBank {
 
         while (amount != 0) {
 
+            //TODO - put function to this method?
             Optional<Integer> biggestAvailableBanknote = getBiggestAvailableBanknote(copyBanknotesOfCurrency, amount);
 
             if (biggestAvailableBanknote.isPresent()) {
 
+                //TODO - take while more when one banknote
                 Integer biggestAvailableBanknoteValue = biggestAvailableBanknote.get();
                 copyBanknotesOfCurrency.compute(
                         biggestAvailableBanknoteValue,
-                        (k, v) -> v - 1);
+                        (k, v) -> v - 1 );
 
-                if (copyBanknotesOfCurrency.get(biggestAvailableBanknoteValue) == 0)
-                    copyBanknotesOfCurrency.remove(biggestAvailableBanknoteValue);
+                copyBanknotesOfCurrency.remove(biggestAvailableBanknoteValue, 0);
 
                 amount -= biggestAvailableBanknoteValue;
 
-                if (banknotesForOutput.containsKey(biggestAvailableBanknoteValue)) {
+                banknotesForOutput.computeIfPresent(biggestAvailableBanknoteValue,
+                        (k, v) ->  v + 1 );
 
-                    banknotesForOutput.compute(
-                            biggestAvailableBanknoteValue,
-                            (k, v) -> v + 1);
-                } else {
-                    banknotesForOutput.put(biggestAvailableBanknoteValue, 1);
-                }
-
+                banknotesForOutput.putIfAbsent(biggestAvailableBanknoteValue, 1);
 
             } else {
                 return Optional.empty();
@@ -80,8 +80,6 @@ public class CashBank {
         }
 
         if (!banknotesForOutput.isEmpty()) {
-
-            copyBanknotesOfCurrency = cleanZeroCountBanknotes(copyBanknotesOfCurrency);
 
             if (!copyBanknotesOfCurrency.isEmpty()){
                 bank.put(currency, copyBanknotesOfCurrency);
@@ -92,59 +90,40 @@ public class CashBank {
 
             return Optional.of(
                     banknotesToString(banknotesForOutput));
-
         }
 
         return Optional.empty();
     }
 
-    private Map<Integer, Integer> cleanZeroCountBanknotes(Map<Integer, Integer> allBanknotesOfCurrency) {
-
-        Set<Integer> allAvailableBanknotes = allBanknotesOfCurrency.keySet();
-
-        Iterator<Integer> iter = allAvailableBanknotes.iterator();
-
-        while (iter.hasNext()) {
-
-            int valueOfBanknotes = iter.next();
-
-            if (allBanknotesOfCurrency.get(valueOfBanknotes) == 0) {
-                allBanknotesOfCurrency.remove(valueOfBanknotes);
-            }
-
-        }
-
-        return allBanknotesOfCurrency;
-    }
-
+    //TODO return count of banknotes
     private Optional<Integer> getBiggestAvailableBanknote(Map<Integer, Integer> allBanknotesOfCurrency, int amount) {
 
         Set<Integer> allAvailableBanknotes = allBanknotesOfCurrency.keySet();
 
-        int max = Integer.MIN_VALUE;
+        int max = 0;
 
-        Iterator<Integer> iter = allAvailableBanknotes.iterator();
+        for(Integer valueOfBanknotes : allAvailableBanknotes){
 
-        while (iter.hasNext()) {
+            if (max <= valueOfBanknotes &&
+                    valueOfBanknotes <= amount &&
+                    allBanknotesOfCurrency.get(valueOfBanknotes) > 0) {
 
-            int valueOfBanknotes = iter.next();
-            if (max <= valueOfBanknotes && valueOfBanknotes <= amount && allBanknotesOfCurrency.get(valueOfBanknotes) > 0) {
                 max = valueOfBanknotes;
             }
         }
 
-        Optional<Integer> returnValue = max != Integer.MIN_VALUE ? Optional.of(max) : Optional.empty();
-
-        return returnValue;
+        return max != 0 ? Optional.of(max) : Optional.empty();
     }
 
     private String banknotesToString(Map<Integer, Integer> banknotesForOutput) {
 
         StringBuilder message = new StringBuilder();
 
-        for (Integer value : banknotesForOutput.keySet()) {
+        for (Map.Entry<Integer, Integer> banknotes : banknotesForOutput.entrySet()) {
 
-            Integer number = banknotesForOutput.get(value);
+            Integer value = banknotes.getKey();
+            Integer number = banknotes.getValue();
+
             String line = String.format("%d %d", value, number);
             message.append(line);
             message.append(Dictionary.NEW_LINE);
@@ -158,11 +137,16 @@ public class CashBank {
 
         StringBuilder message = new StringBuilder();
 
-        for (String currency : bank.keySet()) {
-            Map<Integer, Integer> subBank = bank.get(currency);
+        for (Map.Entry<String, Map<Integer, Integer>> bankEntry : bank.entrySet()) {
 
-            for (Integer value : subBank.keySet()) {
-                Integer number = subBank.get(value);
+            String currency = bankEntry.getKey();
+            Map<Integer, Integer> subBank = bankEntry.getValue();
+
+            for (Map.Entry<Integer, Integer> currencyEntry : subBank.entrySet()) {
+
+                Integer value = currencyEntry.getKey();
+                Integer number = currencyEntry.getValue();
+
                 String line = String.format("%s %d %d", currency, value, number);
                 message.append(line);
                 message.append(Dictionary.NEW_LINE);

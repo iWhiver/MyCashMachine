@@ -1,14 +1,14 @@
-package com.Belorechev.InputOutput;
+package com.belorechev.input_output;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class InputCommandByConsole implements InputCommand{
+public class CommandInputByConsole implements CommandInput {
 
     private BufferedReader br;
 
-    public InputCommandByConsole() {
+    public CommandInputByConsole() {
 
         br = new BufferedReader(new InputStreamReader(System.in));
 

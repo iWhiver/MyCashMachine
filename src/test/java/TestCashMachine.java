@@ -1,7 +1,8 @@
-import com.Belorechev.Computer.CashBank;
-import com.Belorechev.Computer.Computer;
-import com.Belorechev.InputOutput.OutputMessage;
-import com.Belorechev.Utills.Dictionary;
+import com.belorechev.data.CashBank;
+import com.belorechev.computer.Computer;
+import com.belorechev.input_output.MessageOutputByConsole;
+import com.belorechev.input_output.MessageOutput;
+import com.belorechev.utility.Dictionary;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,9 +11,11 @@ import java.util.TreeMap;
 
 import static org.junit.Assert.assertEquals;
 
+//TODO Split big methods on classes
+
 public class TestCashMachine {
     private Computer computer;
-    private OutputMessage outputCom;
+    private MessageOutput outputCom;
     private CashBank cashBank;
 
     private Map<String, Map<Integer, Integer>> expectedBank;
@@ -31,7 +34,7 @@ public class TestCashMachine {
     @Before
     public void init(){
         computer = new Computer();
-        outputCom = new OutputMessage();
+        outputCom = new MessageOutputByConsole();
         cashBank = new CashBank();
         expectedBank = new TreeMap<>();
         banknotesOfCurrency = new TreeMap<>();

@@ -1,6 +1,6 @@
-package com.Belorechev.InputOutput;
+package com.belorechev.input_output;
 
-public class OutputMessageByConsole implements OutputMessage {
+public class MessageOutputByConsole implements MessageOutput {
 
     @Override
     public void printMessage(String output) {
