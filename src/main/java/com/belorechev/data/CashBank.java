@@ -35,8 +35,6 @@ public class CashBank {
         bank.put(currency, banknotesOfCurrency);
     }
 
-
-
     //TODO Test
     //TODO take banknotes with packs without each banknotes
 
@@ -78,14 +76,14 @@ public class CashBank {
 
             copyBanknotesOfCurrency.compute(
                     biggestAvailableBanknoteValue,
-                    (k, v) -> v - 1 * countOfBanknotesOperation );
+                    (k, v) -> v - countOfBanknotesOperation );
 
             copyBanknotesOfCurrency.remove(biggestAvailableBanknoteValue, 0);
 
             amount -= biggestAvailableBanknoteValue * countOfBanknotesOperation;
 
             banknotesForOutput.computeIfPresent(biggestAvailableBanknoteValue,
-                    (k, v) -> v + 1 * countOfBanknotesOperation );
+                    (k, v) -> v + countOfBanknotesOperation );
 
             banknotesForOutput.putIfAbsent(biggestAvailableBanknoteValue, countOfBanknotesOperation);
         }

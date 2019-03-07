@@ -1,4 +1,3 @@
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -204,11 +203,13 @@ public class TestCashBankGet extends TestBase{
         cashBank.add("USD", 100, 1);
         cashBank.add("USD", 10, 10);
         cashBank.get("USD",100);
+
         actualBank = cashBank.getBank();
 
         putInExpectedBankNewCurrency("USD", 10, 10);
 
         assertEquals(expectedBank, actualBank);
+
     }
 
     @Test

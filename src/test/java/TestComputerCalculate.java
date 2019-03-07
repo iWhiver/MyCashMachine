@@ -1,4 +1,3 @@
-import com.belorechev.computer.Computer;
 import com.belorechev.utility.Dictionary;
 import org.junit.Test;
 

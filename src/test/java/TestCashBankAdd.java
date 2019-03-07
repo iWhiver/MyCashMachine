@@ -44,7 +44,6 @@ public class TestCashBankAdd extends TestBase{
     @Test
     public void addTwoCurrencies() {
 
-        cleanValues();
         cashBank.add("RUB", 10, 5);
         cashBank.add("USD", 10, 5);
 
