@@ -196,7 +196,6 @@ public class TestCashBankGet extends TestBase{
         assertEquals(expectedBank, actualBank);
     }
 
-    //TODO Low Performance
     @Test
     public void getAmountThereAreOpportunities()
     {

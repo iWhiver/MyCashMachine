@@ -50,28 +50,14 @@ public class CashBank {
 
         while (amount != 0) {
 
-            Set<Integer> allAvailableBanknotes = copyBanknotesOfCurrency.keySet();
-            Integer biggestAvailableBanknoteValue = 0;
-
-            for(Integer valueOfBanknotes : allAvailableBanknotes){
-
-                if (biggestAvailableBanknoteValue <= valueOfBanknotes &&
-                        valueOfBanknotes <= amount &&
-                        copyBanknotesOfCurrency.get(valueOfBanknotes) > 0) {
-
-                    biggestAvailableBanknoteValue = valueOfBanknotes;
-                }
-            }
+            Integer biggestAvailableBanknoteValue = getBiggestAvailableBanknoteValue(amount, copyBanknotesOfCurrency);
 
             if (biggestAvailableBanknoteValue == 0) {
                 return Optional.empty();
             }
 
             int countOfBanknotes = copyBanknotesOfCurrency.get(biggestAvailableBanknoteValue);
-
-
             int necessary = amount / biggestAvailableBanknoteValue;
-
             int countOfBanknotesOperation = necessary <= countOfBanknotes ? necessary : countOfBanknotes;
 
             copyBanknotesOfCurrency.compute(
@@ -81,9 +67,6 @@ public class CashBank {
             copyBanknotesOfCurrency.remove(biggestAvailableBanknoteValue, 0);
 
             amount -= biggestAvailableBanknoteValue * countOfBanknotesOperation;
-
-            banknotesForOutput.computeIfPresent(biggestAvailableBanknoteValue,
-                    (k, v) -> v + countOfBanknotesOperation );
 
             banknotesForOutput.putIfAbsent(biggestAvailableBanknoteValue, countOfBanknotesOperation);
         }
@@ -102,6 +85,24 @@ public class CashBank {
         }
 
         return Optional.empty();
+    }
+
+    private Integer getBiggestAvailableBanknoteValue(int amount, Map<Integer, Integer> copyBanknotesOfCurrency) {
+
+        Set<Integer> allAvailableBanknotes = copyBanknotesOfCurrency.keySet();
+
+        Integer biggestAvailableBanknoteValue = 0;
+
+        for(Integer valueOfBanknotes : allAvailableBanknotes){
+
+            if (biggestAvailableBanknoteValue <= valueOfBanknotes &&
+                    valueOfBanknotes <= amount &&
+                    copyBanknotesOfCurrency.get(valueOfBanknotes) > 0) {
+
+                biggestAvailableBanknoteValue = valueOfBanknotes;
+            }
+        }
+        return biggestAvailableBanknoteValue;
     }
 
     private String banknotesToString(Map<Integer, Integer> banknotesForOutput) {
