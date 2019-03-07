@@ -1,3 +1,5 @@
+package com.belorechev.cashmachine;
+
 import com.belorechev.cashmachine.computer.Computer;
 import com.belorechev.cashmachine.data.CashBank;
 import com.belorechev.cashmachine.utility.Dictionary;

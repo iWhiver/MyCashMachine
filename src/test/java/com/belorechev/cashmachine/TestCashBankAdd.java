@@ -1,6 +1,7 @@
-import org.junit.Test;
+package com.belorechev.cashmachine;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import static junit.framework.TestCase.assertEquals;
 
 public class TestCashBankAdd extends TestBase{
 
@@ -12,7 +13,7 @@ public class TestCashBankAdd extends TestBase{
         putInExpectedBankNewCurrency("USD", 10, 10);
 
         actualBank = cashBank.getBank();
-        assertEquals(expectedBank, actualBank);
+        assertEquals("123", expectedBank, actualBank);
     }
 
     @Test

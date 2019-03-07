@@ -1,7 +1,8 @@
+package com.belorechev.cashmachine;
+
 import com.belorechev.cashmachine.utility.Dictionary;
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
+import static junit.framework.TestCase.assertEquals;
 
 public class TestComputerCalculate extends TestBase {
 

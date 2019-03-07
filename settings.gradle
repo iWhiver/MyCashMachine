@@ -1,2 +1,6 @@
-rootProject.name = 'MyCashMachine'
-
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+}
+rootProject.name = 'cashmachine'

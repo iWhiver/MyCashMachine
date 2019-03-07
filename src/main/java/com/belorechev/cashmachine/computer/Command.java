@@ -4,9 +4,9 @@ import com.belorechev.cashmachine.utility.Dictionary;
 
 interface Command {
 
-    boolean isSuited (String[] operation);
+    boolean isSuited(String[] operation);
 
-    String apply (String[] operation);
+    String apply(String[] operation);
 
 
     default boolean isValidCountArguments(String[] operation, int expectedCount) {

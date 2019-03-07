@@ -1,6 +1,7 @@
-import org.junit.Test;
+package com.belorechev.cashmachine;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import static junit.framework.TestCase.assertEquals;
 
 public class TestCashBankGet extends TestBase{
 
