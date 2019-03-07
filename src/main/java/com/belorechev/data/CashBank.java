@@ -47,36 +47,47 @@ public class CashBank {
         }
 
         Map<Integer, Integer> realBanknotesOfCurrency = bank.get(currency);
-
         Map<Integer, Integer> copyBanknotesOfCurrency = new TreeMap<>(realBanknotesOfCurrency);
-
         Map<Integer, Integer> banknotesForOutput = new TreeMap<>(Collections.reverseOrder());
 
         while (amount != 0) {
 
-            //TODO - put function to this method?
-            Optional<Integer> biggestAvailableBanknote = getBiggestAvailableBanknote(copyBanknotesOfCurrency, amount);
+            Set<Integer> allAvailableBanknotes = copyBanknotesOfCurrency.keySet();
+            Integer biggestAvailableBanknoteValue = 0;
 
-            if (biggestAvailableBanknote.isPresent()) {
+            for(Integer valueOfBanknotes : allAvailableBanknotes){
 
-                //TODO - take while more when one banknote
-                Integer biggestAvailableBanknoteValue = biggestAvailableBanknote.get();
-                copyBanknotesOfCurrency.compute(
-                        biggestAvailableBanknoteValue,
-                        (k, v) -> v - 1 );
+                if (biggestAvailableBanknoteValue <= valueOfBanknotes &&
+                        valueOfBanknotes <= amount &&
+                        copyBanknotesOfCurrency.get(valueOfBanknotes) > 0) {
 
-                copyBanknotesOfCurrency.remove(biggestAvailableBanknoteValue, 0);
+                    biggestAvailableBanknoteValue = valueOfBanknotes;
+                }
+            }
 
-                amount -= biggestAvailableBanknoteValue;
-
-                banknotesForOutput.computeIfPresent(biggestAvailableBanknoteValue,
-                        (k, v) ->  v + 1 );
-
-                banknotesForOutput.putIfAbsent(biggestAvailableBanknoteValue, 1);
-
-            } else {
+            if (biggestAvailableBanknoteValue == 0) {
                 return Optional.empty();
             }
+
+            int countOfBanknotes = copyBanknotesOfCurrency.get(biggestAvailableBanknoteValue);
+
+
+            int necessary = amount / biggestAvailableBanknoteValue;
+
+            int countOfBanknotesOperation = necessary <= countOfBanknotes ? necessary : countOfBanknotes;
+
+            copyBanknotesOfCurrency.compute(
+                    biggestAvailableBanknoteValue,
+                    (k, v) -> v - 1 * countOfBanknotesOperation );
+
+            copyBanknotesOfCurrency.remove(biggestAvailableBanknoteValue, 0);
+
+            amount -= biggestAvailableBanknoteValue * countOfBanknotesOperation;
+
+            banknotesForOutput.computeIfPresent(biggestAvailableBanknoteValue,
+                    (k, v) -> v + 1 * countOfBanknotesOperation );
+
+            banknotesForOutput.putIfAbsent(biggestAvailableBanknoteValue, countOfBanknotesOperation);
         }
 
         if (!banknotesForOutput.isEmpty()) {
@@ -93,26 +104,6 @@ public class CashBank {
         }
 
         return Optional.empty();
-    }
-
-    //TODO return count of banknotes
-    private Optional<Integer> getBiggestAvailableBanknote(Map<Integer, Integer> allBanknotesOfCurrency, int amount) {
-
-        Set<Integer> allAvailableBanknotes = allBanknotesOfCurrency.keySet();
-
-        int max = 0;
-
-        for(Integer valueOfBanknotes : allAvailableBanknotes){
-
-            if (max <= valueOfBanknotes &&
-                    valueOfBanknotes <= amount &&
-                    allBanknotesOfCurrency.get(valueOfBanknotes) > 0) {
-
-                max = valueOfBanknotes;
-            }
-        }
-
-        return max != 0 ? Optional.of(max) : Optional.empty();
     }
 
     private String banknotesToString(Map<Integer, Integer> banknotesForOutput) {
