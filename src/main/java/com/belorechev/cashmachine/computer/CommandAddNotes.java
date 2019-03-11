@@ -1,9 +1,10 @@
 package com.belorechev.cashmachine.computer;
 
 import com.belorechev.cashmachine.data.CashBank;
+import com.belorechev.cashmachine.data.CashBankTreeMap;
 import com.belorechev.cashmachine.utility.Dictionary;
 
-class CommandAddNotes implements Command{
+class CommandAddNotes extends CommandTemplate {
 
     private CashBank cashBank;
 
@@ -12,7 +13,6 @@ class CommandAddNotes implements Command{
     public CommandAddNotes(CashBank cashBank){
 
         this.cashBank = cashBank;
-
     }
 
     @Override

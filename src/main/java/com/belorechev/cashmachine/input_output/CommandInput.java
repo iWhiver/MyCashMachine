@@ -5,4 +5,5 @@ import java.io.IOException;
 public interface CommandInput {
 
     String getNext() throws IOException;
+
 }

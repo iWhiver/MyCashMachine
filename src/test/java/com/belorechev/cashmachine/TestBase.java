@@ -1,7 +1,7 @@
 package com.belorechev.cashmachine;
 
 import com.belorechev.cashmachine.computer.Computer;
-import com.belorechev.cashmachine.data.CashBank;
+import com.belorechev.cashmachine.data.CashBankTreeMap;
 import com.belorechev.cashmachine.utility.Dictionary;
 import org.junit.Before;
 
@@ -11,7 +11,7 @@ import java.util.TreeMap;
 public class TestBase {
 
     Computer computer;
-    CashBank cashBank;
+    CashBankTreeMap cashBank;
 
     Map<String, Map<Integer, Integer>> expectedBank;
     Map<String, Map<Integer, Integer>> actualBank;
@@ -28,7 +28,7 @@ public class TestBase {
     @Before
     public void init(){
         computer = new Computer();
-        cashBank = new CashBank();
+        cashBank = new CashBankTreeMap();
         expectedBank = new TreeMap<>();
         banknotesOfCurrency = new TreeMap<>();
 

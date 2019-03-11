@@ -1,9 +1,11 @@
 package com.belorechev.cashmachine;
 
 import org.junit.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
 import static junit.framework.TestCase.assertEquals;
 
-
+@SpringBootTest
 public class FunctionalTests extends TestBase{
 
     @Test

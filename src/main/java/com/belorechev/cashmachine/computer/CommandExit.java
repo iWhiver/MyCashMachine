@@ -2,7 +2,7 @@ package com.belorechev.cashmachine.computer;
 
 import com.belorechev.cashmachine.utility.Dictionary;
 
-class CommandExit implements Command {
+class CommandExit extends CommandTemplate {
 
     private String identification = "exit";
 

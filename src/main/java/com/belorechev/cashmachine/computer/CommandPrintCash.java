@@ -1,9 +1,10 @@
 package com.belorechev.cashmachine.computer;
 
 import com.belorechev.cashmachine.data.CashBank;
+import com.belorechev.cashmachine.data.CashBankTreeMap;
 import com.belorechev.cashmachine.utility.Dictionary;
 
-class CommandPrintCash implements Command {
+class CommandPrintCash extends CommandTemplate {
 
     private CashBank cashBank;
 
