@@ -1,12 +1,11 @@
 package com.belorechev.cashmachine.computer;
 
 import com.belorechev.cashmachine.data.CashBank;
-import com.belorechev.cashmachine.data.CashBankTreeMap;
 import com.belorechev.cashmachine.utility.Dictionary;
 
 import java.util.Optional;
 
-class CommandGetCash extends CommandTemplate {
+class CommandGetCash implements CommandTemplate {
 
     private CashBank cashBank;
 

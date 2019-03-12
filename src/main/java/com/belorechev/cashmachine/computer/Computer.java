@@ -1,21 +1,20 @@
 package com.belorechev.cashmachine.computer;
 
 import com.belorechev.cashmachine.data.CashBank;
-import com.belorechev.cashmachine.data.CashBankTreeMap;
 import com.belorechev.cashmachine.utility.Dictionary;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class Computer {
 
+    @Autowired
+    @Qualifier("TreeMap")
     private CashBank cashBank;
-
-    public Computer() {
-
-        //TODO Injection
-        cashBank = new CashBankTreeMap();
-    }
 
     public String calculate(String command) {
 

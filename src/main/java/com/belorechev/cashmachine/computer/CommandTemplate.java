@@ -2,24 +2,24 @@ package com.belorechev.cashmachine.computer;
 
 import com.belorechev.cashmachine.utility.Dictionary;
 
-abstract class CommandTemplate {
+interface CommandTemplate {
 
-    abstract boolean isSuited(String[] operation);
+    boolean isSuited(String[] operation);
 
-    abstract String apply(String[] operation);
+   String apply(String[] operation);
 
 
-    boolean isValidCountArguments(String[] operation, int expectedCount) {
+    default boolean isValidCountArguments(String[] operation, int expectedCount) {
 
         return operation.length == expectedCount;
     }
 
-    boolean isValidCurrency(String currency) {
+    default boolean isValidCurrency(String currency) {
 
         return currency.equals(currency.toUpperCase()) && currency.length() == 3;
     }
 
-    boolean isValidValue(Integer value) {
+    default boolean isValidValue(Integer value) {
 
         for (Integer validValue : Dictionary.VALID_BANKNOTES) {
             if (value.equals(validValue)) {
@@ -30,7 +30,7 @@ abstract class CommandTemplate {
         return false;
     }
 
-    boolean isPositive(Integer number) {
+    default boolean isPositive(Integer number) {
 
         return number > 0;
     }

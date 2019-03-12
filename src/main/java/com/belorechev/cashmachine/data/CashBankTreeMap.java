@@ -1,9 +1,13 @@
 package com.belorechev.cashmachine.data;
 
 import com.belorechev.cashmachine.utility.Dictionary;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
+@Component
+@Qualifier("TreeMap")
 public class CashBankTreeMap extends CashBank {
 
     private Map<String, Map<Integer, Integer>> bank;
@@ -34,9 +38,6 @@ public class CashBankTreeMap extends CashBank {
 
         bank.put(currency, banknotesOfCurrency);
     }
-
-    //TODO Test
-    //TODO take banknotes with packs without each banknotes
 
     public Optional<String> get(String currency, int amount) {
 

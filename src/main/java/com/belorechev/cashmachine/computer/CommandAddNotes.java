@@ -1,10 +1,9 @@
 package com.belorechev.cashmachine.computer;
 
 import com.belorechev.cashmachine.data.CashBank;
-import com.belorechev.cashmachine.data.CashBankTreeMap;
 import com.belorechev.cashmachine.utility.Dictionary;
 
-class CommandAddNotes extends CommandTemplate {
+class CommandAddNotes implements CommandTemplate {
 
     private CashBank cashBank;
 
