@@ -1,22 +1,24 @@
-package com.belorechev.cashmachine;
+package com.belorechev.cashmachine.data;
 
+import com.belorechev.cashmachine.TestBase;
 import org.junit.Test;
+
 import static junit.framework.TestCase.assertEquals;
 
-public class TestCashBankGet extends TestBase{
+public class TestCashBankGet extends TestBase {
 
     @Test
-    public void getLastValueEmptyCurrencyEmptyBank()
+    public void getLastValue_EmptyCurrency_EmptyBank()
     {
         cashBank.add("USD", 1, 1);
         cashBank.get("USD", 1);
         actualBank = cashBank.getBank();
 
-        assertEquals(expectedBank, actualBank);
+        assertEmpty(actualBank);
     }
 
     @Test
-    public void getLastValueBankEmptyCurrency()
+    public void getLastValue_NotEmptyBank_EmptyCurrency()
     {
         cashBank.add("USD", 1, 1);
         cashBank.add("RUB", 1, 1);
@@ -29,7 +31,7 @@ public class TestCashBankGet extends TestBase{
     }
 
     @Test
-    public void getLastValueNotEmptyCurrency()
+    public void getLastValue_NotEmptyCurrency()
     {
         cashBank.add("USD", 1, 1);
         cashBank.add("USD", 10, 1);
@@ -43,7 +45,7 @@ public class TestCashBankGet extends TestBase{
 
 
     @Test
-    public void getLastValueAnotherValueNotLast1()
+    public void getLastValue_AnotherValueNotLast1()
     {
         cashBank.add("USD", 100, 1);
         cashBank.add("USD", 10, 1);
@@ -58,7 +60,7 @@ public class TestCashBankGet extends TestBase{
 
 
     @Test
-    public void getLastValueAnotherValueNotLast2()
+    public void getLastValue_AnotherValueNotLast2()
     {
         cashBank.add("USD", 100, 1);
         cashBank.add("USD", 10, 10);
@@ -71,7 +73,7 @@ public class TestCashBankGet extends TestBase{
     }
 
     @Test
-    public void getLastValueAnotherValueNotLast3()
+    public void getLastValue_AnotherValueNotLast3()
     {
         cashBank.add("USD", 100, 10);
         cashBank.add("USD", 10, 1);
@@ -84,7 +86,7 @@ public class TestCashBankGet extends TestBase{
     }
 
     @Test
-    public void getLastFourValuesEmptyCurrencyEmptyBank1()
+    public void getLastValues_EmptyCurrency_EmptyBank1()
     {
         cashBank.add("USD", 1, 1);
         cashBank.add("USD", 5, 1);
@@ -93,11 +95,11 @@ public class TestCashBankGet extends TestBase{
         cashBank.get("USD",1 + 5 + 10 + 50);
         actualBank = cashBank.getBank();
 
-        assertEquals(expectedBank, actualBank);
+        assertEmpty(actualBank);
     }
 
     @Test
-    public void getLastFourValuesEmptyCurrencyEmptyBank2()
+    public void getLastValues_EmptyCurrency_EmptyBank2()
     {
         cashBank.add("USD", 100, 5);
         cashBank.add("USD", 10, 5);
@@ -105,11 +107,11 @@ public class TestCashBankGet extends TestBase{
         cashBank.get("USD",100*5 + 10*5 + 1*5);
         actualBank = cashBank.getBank();
 
-        assertEquals(expectedBank, actualBank);
+        assertEmpty(actualBank);
     }
 
     @Test
-    public void getLastFourValuesEmptyCurrencyNotEmptyBank()
+    public void getLastValues_EmptyCurrency_NotEmptyBank1()
     {
 
         cashBank.add("USD", 1, 1);
@@ -125,7 +127,23 @@ public class TestCashBankGet extends TestBase{
     }
 
     @Test
-    public void getEachFourValuesNotEmptyCurrency()
+    public void getLastValues_NotEmptyCurrency_NotEmptyBank1()
+    {
+        cashBank.add("USD", 100, 30);
+        cashBank.add("USD", 10, 50);
+        cashBank.add("RUB", 10, 10);
+        cashBank.get("USD",100*1 + 10*2);
+        actualBank = cashBank.getBank();
+
+        putInExpectedBankNewCurrency("USD", 100, 29);
+        putInExpectedBankExistingCurrency(10,48);
+        putInExpectedBankNewCurrency("RUB", 10, 10);
+
+        assertEquals(expectedBank, actualBank);
+    }
+
+    @Test
+    public void getEachValues_NotEmptyCurrency()
     {
         cashBank.add("USD", 1, 2);
         cashBank.add("USD", 5, 2);
@@ -143,7 +161,7 @@ public class TestCashBankGet extends TestBase{
     }
 
     @Test
-    public void getEmptyValueNeedMoreBanknotes()
+    public void getEmptyValue_NeedMoreBanknotes()
     {
         cashBank.add("USD", 1, 1);
         cashBank.get("USD", 2);
@@ -156,7 +174,7 @@ public class TestCashBankGet extends TestBase{
     }
 
     @Test
-    public void getEmptyValueNeedMoreBanknotes2()
+    public void getEmptyValue_NeedMoreBanknotes2()
     {
         cashBank.add("USD", 100, 5);
         cashBank.add("USD", 10, 5);
@@ -172,7 +190,7 @@ public class TestCashBankGet extends TestBase{
     }
 
     @Test
-    public void getEmptyValueNeedAnotherValues1()
+    public void getEmptyValue_NeedAnotherValues1()
     {
         cashBank.add("USD", 50, 1);
         cashBank.get("USD",50 + 1);
@@ -184,7 +202,7 @@ public class TestCashBankGet extends TestBase{
     }
 
     @Test
-    public void getEmptyValueNeedAnotherValues2()
+    public void getEmptyValue_NeedAnotherValues2()
     {
         cashBank.add("USD", 100, 5);
         cashBank.add("USD", 10, 5);
@@ -198,7 +216,7 @@ public class TestCashBankGet extends TestBase{
     }
 
     @Test
-    public void getAmountThereAreOpportunities()
+    public void getAmount_ThereAreOpportunities()
     {
         cashBank.add("USD", 100, 1);
         cashBank.add("USD", 10, 10);
@@ -211,21 +229,4 @@ public class TestCashBankGet extends TestBase{
         assertEquals(expectedBank, actualBank);
 
     }
-
-    @Test
-    public void test13()
-    {
-        cashBank.add("USD", 100, 30);
-        cashBank.add("USD", 10, 50);
-        cashBank.add("RUB", 10, 10);
-        cashBank.get("USD",100*1 + 10*2);
-        actualBank = cashBank.getBank();
-
-        putInExpectedBankNewCurrency("USD", 100, 29);
-        putInExpectedBankExistingCurrency(10,48);
-        putInExpectedBankNewCurrency("RUB", 10, 10);
-
-        assertEquals(expectedBank, actualBank);
-    }
-
 }

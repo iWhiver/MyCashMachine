@@ -1,8 +1,8 @@
-package com.belorechev.cashmachine.computer;
+package com.belorechev.cashmachine.computer.commands;
 
 import com.belorechev.cashmachine.utility.Dictionary;
 
-interface CommandTemplate {
+public interface CommandTemplate {
 
     boolean isSuited(String[] operation);
 

@@ -1,4 +1,4 @@
-package com.belorechev.cashmachine;
+package com.belorechev.cashmachine.logic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import com.belorechev.cashmachine.computer.Computer;

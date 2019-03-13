@@ -1,9 +1,11 @@
-package com.belorechev.cashmachine;
+package com.belorechev.cashmachine.data;
 
+import com.belorechev.cashmachine.TestBase;
 import org.junit.Test;
+
 import static junit.framework.TestCase.assertEquals;
 
-public class TestCashBankAdd extends TestBase{
+public class TestCashBankAdd extends TestBase {
 
     @Test
     public void addOneValue() {
@@ -31,7 +33,7 @@ public class TestCashBankAdd extends TestBase{
     }
 
     @Test
-    public void addOneValueByTwoSteps() {
+    public void addOneValue_ByTwoSteps() {
 
         cashBank.add("USD", 10, 5);
         cashBank.add("USD", 10, 10);

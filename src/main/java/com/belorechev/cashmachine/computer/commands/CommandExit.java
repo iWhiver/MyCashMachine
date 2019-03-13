@@ -1,15 +1,15 @@
-package com.belorechev.cashmachine.computer;
+package com.belorechev.cashmachine.computer.commands;
 
 import com.belorechev.cashmachine.utility.Dictionary;
 
-class CommandExit implements CommandTemplate {
+public class CommandExit implements CommandTemplate {
 
     private String identification = "exit";
 
     @Override
     public boolean isSuited(String[] operation) {
 
-        return operation[0].equals(identification);
+        return operation[0].equalsIgnoreCase(identification);
     }
 
     @Override

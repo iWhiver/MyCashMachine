@@ -8,7 +8,7 @@ import java.util.*;
 
 @Component
 @Qualifier("TreeMap")
-public class CashBankTreeMap extends CashBank {
+public class CashBankTreeMap implements CashBank {
 
     private Map<String, Map<Integer, Integer>> bank;
 
@@ -117,14 +117,14 @@ public class CashBankTreeMap extends CashBank {
 
             String line = String.format("%d %d", value, number);
             message.append(line);
-            message.append(com.belorechev.cashmachine.utility.Dictionary.NEW_LINE);
+            message.append(Dictionary.NEW_LINE);
         }
 
         return message.toString();
     }
 
     @Override
-    public String toString() {
+    public String getPrintForm() {
 
         StringBuilder message = new StringBuilder();
 

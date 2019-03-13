@@ -1,5 +1,6 @@
 package com.belorechev.cashmachine.computer;
 
+import com.belorechev.cashmachine.computer.commands.*;
 import com.belorechev.cashmachine.data.CashBank;
 import com.belorechev.cashmachine.utility.Dictionary;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,9 @@ public class Computer {
         }
 
         return Dictionary.ERROR_STATUS;
+    }
+
+    public void setCashBank(CashBank cashBank) {
+        this.cashBank = cashBank;
     }
 }

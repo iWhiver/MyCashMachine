@@ -1,9 +1,9 @@
-package com.belorechev.cashmachine.computer;
+package com.belorechev.cashmachine.computer.commands;
 
 import com.belorechev.cashmachine.data.CashBank;
 import com.belorechev.cashmachine.utility.Dictionary;
 
-class CommandAddNotes implements CommandTemplate {
+public class CommandAddNotes implements CommandTemplate {
 
     private CashBank cashBank;
 
@@ -39,7 +39,6 @@ class CommandAddNotes implements CommandTemplate {
         catch(NumberFormatException e){
             return Dictionary.ERROR_STATUS;
         }
-
 
         boolean isValid = isValidValue(value) && isValidCurrency(currency) && isPositive(number);
 

@@ -1,9 +1,9 @@
-package com.belorechev.cashmachine.computer;
+package com.belorechev.cashmachine.computer.commands;
 
 import com.belorechev.cashmachine.data.CashBank;
 import com.belorechev.cashmachine.utility.Dictionary;
 
-class CommandPrintCash implements CommandTemplate {
+public class CommandPrintCash implements CommandTemplate {
 
     private CashBank cashBank;
 
@@ -27,7 +27,7 @@ class CommandPrintCash implements CommandTemplate {
             return Dictionary.ERROR_STATUS;
         }
 
-        String extraStatus = cashBank.toString();
+        String extraStatus = cashBank.getPrintForm();
         return extraStatus + Dictionary.OK_STATUS;
     }
 }
