@@ -104,7 +104,7 @@ public class TestCashBankGet extends TestBase {
         cashBank.add("USD", 100, 5);
         cashBank.add("USD", 10, 5);
         cashBank.add("USD", 1, 5);
-        cashBank.get("USD",100*5 + 10*5 + 1*5);
+        cashBank.get("USD",100*5 + 10*5 + 5);
         actualBank = cashBank.getBank();
 
         assertEmpty(actualBank);
@@ -132,7 +132,7 @@ public class TestCashBankGet extends TestBase {
         cashBank.add("USD", 100, 30);
         cashBank.add("USD", 10, 50);
         cashBank.add("RUB", 10, 10);
-        cashBank.get("USD",100*1 + 10*2);
+        cashBank.get("USD", 100 + 10*2);
         actualBank = cashBank.getBank();
 
         putInExpectedBankNewCurrency("USD", 100, 29);
@@ -179,7 +179,7 @@ public class TestCashBankGet extends TestBase {
         cashBank.add("USD", 100, 5);
         cashBank.add("USD", 10, 5);
         cashBank.add("USD", 1, 5);
-        cashBank.get("USD",100*5 + 10*5 + 1*5 + 1);
+        cashBank.get("USD",100*5 + 10*5 + 5 + 1);
         actualBank = cashBank.getBank();
 
         putInExpectedBankNewCurrency("USD", 100, 5);

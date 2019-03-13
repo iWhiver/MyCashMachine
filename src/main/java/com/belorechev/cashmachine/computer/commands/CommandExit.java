@@ -4,10 +4,10 @@ import com.belorechev.cashmachine.utility.Dictionary;
 
 public class CommandExit implements CommandTemplate {
 
-    private String identification = "exit";
-
     @Override
     public boolean isSuited(String[] operation) {
+
+        String identification = "exit";
 
         return operation[0].equalsIgnoreCase(identification);
     }

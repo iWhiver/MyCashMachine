@@ -11,7 +11,7 @@ public interface CommandTemplate {
 
     default boolean isValidCountArguments(String[] operation, int expectedCount) {
 
-        return operation.length == expectedCount;
+        return operation.length != expectedCount;
     }
 
     default boolean isValidCurrency(String currency) {

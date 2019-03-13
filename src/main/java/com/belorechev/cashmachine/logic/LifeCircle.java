@@ -17,16 +17,19 @@ import java.io.IOException;
 @Component
 public class LifeCircle {
 
-    @Autowired
-    @Qualifier("ByConsole")
-    private CommandInput commandInput;
+    private final CommandInput commandInput;
+
+    private final MessageOutput outputCom;
+
+    private final Computer computer;
 
     @Autowired
-    @Qualifier("ByConsole")
-    private MessageOutput outputCom;
+    public LifeCircle(@Qualifier("ByConsole") CommandInput commandInput, @Qualifier("ByConsole") MessageOutput outputCom, Computer computer) {
+        this.commandInput = commandInput;
+        this.outputCom = outputCom;
+        this.computer = computer;
 
-    @Autowired
-    private Computer computer;
+    }
 
     @PostConstruct
     private void start() throws IOException {

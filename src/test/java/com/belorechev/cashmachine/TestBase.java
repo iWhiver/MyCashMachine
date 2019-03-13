@@ -13,7 +13,7 @@ public abstract class TestBase {
 
     protected Map<String, Map<Integer, Integer>> expectedBank;
     protected Map<String, Map<Integer, Integer>> actualBank;
-    protected Map<Integer, Integer> banknotesOfCurrency;
+    private Map<Integer, Integer> banknotesOfCurrency;
 
     @Before
     public void init(){

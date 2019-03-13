@@ -10,7 +10,7 @@ import java.util.*;
 @Qualifier("TreeMap")
 public class CashBankTreeMap implements CashBank {
 
-    private Map<String, Map<Integer, Integer>> bank;
+    private final Map<String, Map<Integer, Integer>> bank;
 
     public CashBankTreeMap() {
 
@@ -26,7 +26,7 @@ public class CashBankTreeMap implements CashBank {
             banknotesOfCurrency = bank.get(currency);
 
             if (banknotesOfCurrency.containsKey(value)) {
-                banknotesOfCurrency.compute(value,  (k, v) ->  v + number);
+                banknotesOfCurrency.compute(value,  (k, v) ->  v == null ? number : v + number);
             } else {
                 banknotesOfCurrency.put(value, number);
             }
@@ -59,11 +59,11 @@ public class CashBankTreeMap implements CashBank {
 
             int countOfBanknotes = copyBanknotesOfCurrency.get(biggestAvailableBanknoteValue);
             int necessary = amount / biggestAvailableBanknoteValue;
-            int countOfBanknotesOperation = necessary <= countOfBanknotes ? necessary : countOfBanknotes;
+            final int countOfBanknotesOperation = necessary <= countOfBanknotes ? necessary : countOfBanknotes;
 
             copyBanknotesOfCurrency.compute(
                     biggestAvailableBanknoteValue,
-                    (k, v) -> v - countOfBanknotesOperation );
+                    (k, v) ->  v == null ? 0 : v - countOfBanknotesOperation);
 
             copyBanknotesOfCurrency.remove(biggestAvailableBanknoteValue, 0);
 

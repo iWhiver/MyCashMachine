@@ -17,12 +17,10 @@ public class ComputerTest {
     @Before
     public void setUp() {
 
-        computer = new Computer();
-
         CashBank cashBankMock = Mockito.mock(CashBank.class);
         Mockito.when(cashBankMock.getPrintForm()).thenReturn("");
         Mockito.when(cashBankMock.get("USD", 10)).thenReturn(Optional.of("10 1"));
-        computer.setCashBank(cashBankMock);
+        computer = new Computer(cashBankMock);
     }
 
     @Test

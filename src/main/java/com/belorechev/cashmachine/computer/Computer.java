@@ -13,9 +13,12 @@ import java.util.List;
 @Component
 public class Computer {
 
+    private final CashBank cashBank;
+
     @Autowired
-    @Qualifier("TreeMap")
-    private CashBank cashBank;
+    public Computer(@Qualifier("TreeMap") CashBank cashBank) {
+        this.cashBank = cashBank;
+    }
 
     public String calculate(String command) {
 
@@ -41,9 +44,5 @@ public class Computer {
         }
 
         return Dictionary.ERROR_STATUS;
-    }
-
-    public void setCashBank(CashBank cashBank) {
-        this.cashBank = cashBank;
     }
 }

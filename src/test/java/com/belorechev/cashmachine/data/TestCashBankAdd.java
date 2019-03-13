@@ -33,12 +33,29 @@ public class TestCashBankAdd extends TestBase {
     }
 
     @Test
-    public void addOneValue_ByTwoSteps() {
+    public void addOneValue_ByTwoSteps1() {
 
         cashBank.add("USD", 10, 5);
         cashBank.add("USD", 10, 10);
 
         putInExpectedBankNewCurrency("USD", 10, 10 + 5);
+
+        actualBank = cashBank.getBank();
+        assertEquals(expectedBank, actualBank);
+    }
+
+    @Test
+    public void addOneValue_ByTwoSteps2() {
+
+        cashBank.add("USD", 10, 5);
+        cashBank.add("USD", 10, 10);
+
+        cashBank.add("USD", 100, 5);
+        cashBank.add("USD", 100, 10);
+
+
+        putInExpectedBankNewCurrency("USD", 10, 10 + 5);
+        putInExpectedBankExistingCurrency(100, 10 + 5);
 
         actualBank = cashBank.getBank();
         assertEquals(expectedBank, actualBank);

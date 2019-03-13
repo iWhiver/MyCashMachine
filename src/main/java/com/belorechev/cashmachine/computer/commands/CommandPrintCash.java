@@ -5,9 +5,7 @@ import com.belorechev.cashmachine.utility.Dictionary;
 
 public class CommandPrintCash implements CommandTemplate {
 
-    private CashBank cashBank;
-
-    private String identification = "?";
+    private final CashBank cashBank;
 
     public CommandPrintCash(CashBank cashBank) {
 
@@ -17,13 +15,15 @@ public class CommandPrintCash implements CommandTemplate {
     @Override
     public boolean isSuited(String[] operation) {
 
+        String identification = "?";
+
         return operation[0].equals(identification);
     }
 
     @Override
     public String apply(String[] operation) {
 
-        if (!isValidCountArguments(operation, 1)) {
+        if (isValidCountArguments(operation, 1)) {
             return Dictionary.ERROR_STATUS;
         }
 

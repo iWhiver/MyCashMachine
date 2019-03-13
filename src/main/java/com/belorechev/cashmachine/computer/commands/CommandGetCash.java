@@ -7,9 +7,7 @@ import java.util.Optional;
 
 public class CommandGetCash implements CommandTemplate {
 
-    private CashBank cashBank;
-
-    private String identification = "-";
+    private final CashBank cashBank;
 
     public CommandGetCash(CashBank cashBank) {
 
@@ -20,13 +18,15 @@ public class CommandGetCash implements CommandTemplate {
     @Override
     public boolean isSuited(String[] operation) {
 
+        String identification = "-";
+
         return operation[0].equals(identification);
     }
 
     @Override
     public String apply(String[] operation) {
 
-        if (!isValidCountArguments(operation, 3)) {
+        if (isValidCountArguments(operation, 3)) {
             return Dictionary.ERROR_STATUS;
         }
 

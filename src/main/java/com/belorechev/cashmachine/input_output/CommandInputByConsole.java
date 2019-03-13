@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 @Qualifier("ByConsole")
 public class CommandInputByConsole implements CommandInput {
 
-    private BufferedReader br;
+    private final BufferedReader br;
 
     public CommandInputByConsole() {
 
