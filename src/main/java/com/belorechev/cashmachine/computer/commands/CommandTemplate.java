@@ -21,7 +21,7 @@ public interface CommandTemplate {
 
     default boolean isValidValue(Integer value) {
 
-        for (Integer validValue : Dictionary.VALID_BANKNOTES) {
+        for (Integer validValue : Dictionary.getValidBanknotes()) {
             if (value.equals(validValue)) {
                 return true;
             }

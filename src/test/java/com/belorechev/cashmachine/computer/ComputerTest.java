@@ -1,6 +1,7 @@
 package com.belorechev.cashmachine.computer;
 
 import com.belorechev.cashmachine.data.CashBank;
+import com.belorechev.cashmachine.utility.Dictionary;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -64,7 +65,7 @@ public class ComputerTest {
         assertEquals(ERROR_STATUS, computer.calculate("+ USD 10"));
         assertEquals(ERROR_STATUS, computer.calculate("+ USD 10 50 + USD 10"));
 
-        for (Integer banknote : VALID_BANKNOTES) {
+        for (Integer banknote : Dictionary.getValidBanknotes()) {
             String command = String.format("+ USD %d 50", banknote);
             assertEquals(OK_STATUS, computer.calculate(command));
         }

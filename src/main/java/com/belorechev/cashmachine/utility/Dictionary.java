@@ -2,7 +2,7 @@ package com.belorechev.cashmachine.utility;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
-
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,23 +18,35 @@ public final class Dictionary {
     public static final String NEW_LINE = "\r\n";
     public static final String HI_STATUS = "Hello! I am cash machine. Let's do it!";
 
-    private static final List<Integer> tempList = new ArrayList<>();
-    public static final List<Integer> VALID_BANKNOTES = Collections.unmodifiableList(tempList);
+    private final List<Integer> tempList = new ArrayList<>();
+    private final List<Integer> validBanknotes = Collections.unmodifiableList(tempList);
 
     private boolean canChangeProperties = true;
+    private static Dictionary dictionary;
 
-    public void setValidBanknotes(List<Integer> emailInput) {
+    public static List<Integer> getValidBanknotes() {
+
+        return dictionary.validBanknotes;
+    }
+
+    public void setValidBanknotes(List<Integer> banknotesFromYML) {
 
         if (canChangeProperties) {
-            tempList.addAll(emailInput);
+            tempList.addAll(banknotesFromYML);
             canChangeProperties = false;
         }
     }
 
     private Dictionary() {
+
         if (!canChangeProperties) {
             throw new IllegalStateException("Utility class");
         }
+    }
+
+    @PostConstruct
+    private void init(){
+        dictionary = this;
     }
 
 }
