@@ -24,11 +24,11 @@ public class LifeCircle {
     private final Computer computer;
 
     @Autowired
-    public LifeCircle(@Qualifier("ByConsole") CommandInput commandInput, @Qualifier("ByConsole") MessageOutput outputCom, Computer computer) {
+    public LifeCircle(@Qualifier("ByConsole") CommandInput commandInput, @Qualifier("ByConsole") MessageOutput outputCom, Computer computer, Dictionary dictionaryInput) {
+
         this.commandInput = commandInput;
         this.outputCom = outputCom;
         this.computer = computer;
-
     }
 
     @PostConstruct
@@ -40,7 +40,6 @@ public class LifeCircle {
             String command = commandInput.getNext();
             String output = computer.calculate(command);
             outputCom.printMessage(output);
-
 
             if (output.equals(Dictionary.EXIT_STATUS)) {
                 break;

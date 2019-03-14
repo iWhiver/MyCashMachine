@@ -1,9 +1,14 @@
 package com.belorechev.cashmachine.utility;
 
-import java.util.Arrays;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Component
+@ConfigurationProperties("my")
 public final class Dictionary {
 
     public static final String OK_STATUS = "OK";
@@ -11,12 +16,25 @@ public final class Dictionary {
     public static final String EXIT_STATUS = "Bye!";
 
     public static final String NEW_LINE = "\r\n";
+    public static final String HI_STATUS = "Hello! I am cash machine. Let's do it!";
 
-    public static final String HI_STATUS = NEW_LINE + NEW_LINE + NEW_LINE + "Hello! I am cash machine. Let's do it!";
+    private static final List<Integer> tempList = new ArrayList<>();
+    public static final List<Integer> VALID_BANKNOTES = Collections.unmodifiableList(tempList);
 
-    public static final List<Integer> VALID_BANKNOTES = Collections.unmodifiableList(Arrays.asList(1, 10, 100, 1000, 5, 50, 500, 5000));
+    private boolean canChangeProperties = true;
 
-    private Dictionary(){
-        throw new IllegalStateException("Utility class");
+    public void setValidBanknotes(List<Integer> emailInput) {
+
+        if (canChangeProperties) {
+            tempList.addAll(emailInput);
+            canChangeProperties = false;
+        }
     }
+
+    private Dictionary() {
+        if (!canChangeProperties) {
+            throw new IllegalStateException("Utility class");
+        }
+    }
+
 }

@@ -1,0 +1,32 @@
+logging:
+  level:
+    .: error
+    org.springframework: ERROR
+    com.belorechev: ERROR
+
+spring:
+  profiles:
+    active: "dev"
+  main:
+    banner-mode: "off"
+
+my:
+  VALID_BANKNOTES:
+    - 1
+    - 10
+    - 100
+    - 1000
+    - 5
+    - 50
+    - 500
+    - 5000
+
+---
+
+spring:
+  profiles: dev
+
+---
+
+spring:
+  profiles: prod
