@@ -1,5 +1,6 @@
 package com.belorechev.cashmachine.computer.commands;
 
+import com.belorechev.cashmachine.computer.Validator;
 import com.belorechev.cashmachine.data.CashBank;
 import com.belorechev.cashmachine.utility.Dictionary;
 
@@ -9,10 +10,12 @@ public class CommandGetCash implements CommandTemplate {
 
     private final CashBank cashBank;
 
+    private final Validator validator;
+
     public CommandGetCash(CashBank cashBank) {
 
         this.cashBank = cashBank;
-
+        validator = new Validator();
     }
 
     @Override
@@ -26,7 +29,7 @@ public class CommandGetCash implements CommandTemplate {
     @Override
     public String apply(String[] operation) {
 
-        if (isValidCountArguments(operation, 3)) {
+        if (validator.isValidCountArguments(operation, 3)) {
             return Dictionary.ERROR_STATUS;
         }
 
@@ -40,7 +43,7 @@ public class CommandGetCash implements CommandTemplate {
             return Dictionary.ERROR_STATUS;
         }
 
-        boolean isValid = isValidCurrency(currency) && isPositive(amount);
+        boolean isValid = validator.isValidCurrency(currency) && validator.isPositive(amount);
 
         if (isValid) {
 

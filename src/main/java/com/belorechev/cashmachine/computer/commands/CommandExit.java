@@ -9,7 +9,7 @@ public class CommandExit implements CommandTemplate {
 
         String identification = "exit";
 
-        return operation[0].equalsIgnoreCase(identification);
+        return operation[0].equals(identification) || operation[0].equals(identification.toUpperCase());
     }
 
     @Override
