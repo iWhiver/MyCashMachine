@@ -1,6 +1,6 @@
 package com.belorechev.cashmachine.computer.commands;
 
-import com.belorechev.cashmachine.computer.Validator;
+import com.belorechev.cashmachine.utility.Validator;
 import com.belorechev.cashmachine.data.CashBank;
 import com.belorechev.cashmachine.utility.Dictionary;
 
@@ -8,12 +8,9 @@ public class CommandAddNotes implements CommandTemplate {
 
     private final CashBank cashBank;
 
-    private final Validator validator;
-
     public CommandAddNotes(CashBank cashBank) {
 
         this.cashBank = cashBank;
-        validator = new Validator();
     }
 
     @Override
@@ -27,7 +24,7 @@ public class CommandAddNotes implements CommandTemplate {
     @Override
     public String apply(String[] operation){
 
-        if (validator.isValidCountArguments(operation, 4)) {
+        if (Validator.isValidCountArguments(operation, 4)) {
             return Dictionary.ERROR_STATUS;
         }
 
@@ -44,7 +41,7 @@ public class CommandAddNotes implements CommandTemplate {
             return Dictionary.ERROR_STATUS;
         }
 
-        boolean isValid = validator.isValidValue(value) && validator.isValidCurrency(currency) && validator.isPositive(number);
+        boolean isValid = Validator.isValidValue(value) && Validator.isValidCurrency(currency) && Validator.isPositive(number);
 
         if (isValid) {
             cashBank.add(currency, value, number);

@@ -1,6 +1,6 @@
 package com.belorechev.cashmachine.computer.commands;
 
-import com.belorechev.cashmachine.computer.Validator;
+import com.belorechev.cashmachine.utility.Validator;
 import com.belorechev.cashmachine.data.CashBank;
 import com.belorechev.cashmachine.utility.Dictionary;
 
@@ -8,12 +8,9 @@ public class CommandPrintCash implements CommandTemplate {
 
     private final CashBank cashBank;
 
-    private final Validator validator;
-
     public CommandPrintCash(CashBank cashBank) {
 
         this.cashBank = cashBank;
-        validator = new Validator();
     }
 
     @Override
@@ -27,7 +24,7 @@ public class CommandPrintCash implements CommandTemplate {
     @Override
     public String apply(String[] operation) {
 
-        if (validator.isValidCountArguments(operation, 1)) {
+        if (Validator.isValidCountArguments(operation, 1)) {
             return Dictionary.ERROR_STATUS;
         }
 
