@@ -39,7 +39,7 @@ public class CashBankTreeMap implements CashBank {
         bank.put(currency, banknotesOfCurrency);
     }
 
-    public Optional<String> get(String currency, int amount) {
+    public Optional<Set<Cash>> get(String currency, int amount) {
 
         if (!bank.containsKey(currency)) {
             return Optional.empty();
@@ -47,7 +47,7 @@ public class CashBankTreeMap implements CashBank {
 
         Map<Integer, Integer> realBanknotesOfCurrency = bank.get(currency);
         Map<Integer, Integer> copyBanknotesOfCurrency = new TreeMap<>(realBanknotesOfCurrency);
-        Map<Integer, Integer> banknotesForOutput = new TreeMap<>(Collections.reverseOrder());
+        Set<Cash> banknotesForOutput = new TreeSet<>(Collections.reverseOrder());
 
         while (amount != 0) {
 
@@ -69,7 +69,7 @@ public class CashBankTreeMap implements CashBank {
 
             amount -= biggestAvailableBanknoteValue * amountOfBanknotesOperation;
 
-            banknotesForOutput.putIfAbsent(biggestAvailableBanknoteValue, amountOfBanknotesOperation);
+            banknotesForOutput.add(new Cash(currency, biggestAvailableBanknoteValue, amountOfBanknotesOperation));
         }
 
         if (!banknotesForOutput.isEmpty()) {
@@ -81,7 +81,7 @@ public class CashBankTreeMap implements CashBank {
             }
 
             return Optional.of(
-                    banknotesToString(banknotesForOutput));
+                    banknotesForOutput);
         }
 
         return Optional.empty();
@@ -103,23 +103,6 @@ public class CashBankTreeMap implements CashBank {
             }
         }
         return biggestAvailableBanknoteValue;
-    }
-
-    private String banknotesToString(Map<Integer, Integer> banknotesForOutput) {
-
-        StringBuilder message = new StringBuilder();
-
-        for (Map.Entry<Integer, Integer> banknotes : banknotesForOutput.entrySet()) {
-
-            Integer value = banknotes.getKey();
-            Integer number = banknotes.getValue();
-
-            String line = String.format("%d %d", value, number);
-            message.append(line);
-            message.append(Dictionary.NEW_LINE);
-        }
-
-        return message.toString();
     }
 
     @Override

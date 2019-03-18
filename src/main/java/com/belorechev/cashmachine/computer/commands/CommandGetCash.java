@@ -1,10 +1,13 @@
 package com.belorechev.cashmachine.computer.commands;
 
+import com.belorechev.cashmachine.data.Cash;
+import com.belorechev.cashmachine.utility.Converter;
 import com.belorechev.cashmachine.utility.Validator;
 import com.belorechev.cashmachine.data.CashBank;
-import com.belorechev.cashmachine.utility.Dictionary;
+import static com.belorechev.cashmachine.utility.Dictionary.*;
 
 import java.util.Optional;
+import java.util.Set;
 
 public class CommandGetCash extends CommandTemplate {
 
@@ -20,7 +23,7 @@ public class CommandGetCash extends CommandTemplate {
     public String apply(String[] operation) {
 
         if (Validator.isInvalidAmountOfArguments(operation, 3)) {
-            return Dictionary.ERROR_STATUS;
+            return ERROR_STATUS;
         }
 
         int amount;
@@ -28,7 +31,7 @@ public class CommandGetCash extends CommandTemplate {
         try {
             amount = Integer.parseInt(operation[2]);
         } catch (NumberFormatException e) {
-            return Dictionary.ERROR_STATUS;
+            return ERROR_STATUS;
         }
 
         String currency = operation[1];
@@ -36,13 +39,15 @@ public class CommandGetCash extends CommandTemplate {
         boolean isValid = Validator.isValidCurrency(currency) && Validator.isPositive(amount);
 
         if (isValid) {
-            Optional<String> usedBanknotesForOperation = cashBank.get(currency, amount);
+            Optional<Set<Cash>> usedBanknotesForOperation = cashBank.get(currency, amount);
 
             if (usedBanknotesForOperation.isPresent()) {
-                return usedBanknotesForOperation.get() + Dictionary.OK_STATUS;
+
+                String stringRepresentationOfBanknotes = Converter.convertSetOfCashToString(usedBanknotesForOperation.get(), NEW_LINE, false, true, true);
+                return stringRepresentationOfBanknotes + OK_STATUS;
             }
         }
-        return Dictionary.ERROR_STATUS;
+        return ERROR_STATUS;
     }
 }
 

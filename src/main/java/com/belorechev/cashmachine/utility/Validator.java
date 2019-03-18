@@ -1,6 +1,6 @@
 package com.belorechev.cashmachine.utility;
 
-public class Validator {
+public final class Validator {
 
     private static final int MAX_AMOUNT_LETTERS_CURRENCY = 3;
 
