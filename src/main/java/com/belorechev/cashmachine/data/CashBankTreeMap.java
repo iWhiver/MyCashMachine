@@ -26,7 +26,7 @@ public class CashBankTreeMap implements CashBank {
             banknotesOfCurrency = bank.get(currency);
 
             if (banknotesOfCurrency.containsKey(value)) {
-                banknotesOfCurrency.compute(value,  (k, v) ->  v == null ? number : v + number);
+                banknotesOfCurrency.compute(value, (k, v) -> v == null ? number : v + number);
             } else {
                 banknotesOfCurrency.put(value, number);
             }
@@ -57,27 +57,26 @@ public class CashBankTreeMap implements CashBank {
                 return Optional.empty();
             }
 
-            int countOfBanknotes = copyBanknotesOfCurrency.get(biggestAvailableBanknoteValue);
+            int amountOfBanknotes = copyBanknotesOfCurrency.get(biggestAvailableBanknoteValue);
             int necessary = amount / biggestAvailableBanknoteValue;
-            final int countOfBanknotesOperation = necessary <= countOfBanknotes ? necessary : countOfBanknotes;
+            final int amountOfBanknotesOperation = necessary <= amountOfBanknotes ? necessary : amountOfBanknotes;
 
             copyBanknotesOfCurrency.compute(
                     biggestAvailableBanknoteValue,
-                    (k, v) ->  v == null ? 0 : v - countOfBanknotesOperation);
+                    (k, v) -> v == null ? 0 : v - amountOfBanknotesOperation);
 
             copyBanknotesOfCurrency.remove(biggestAvailableBanknoteValue, 0);
 
-            amount -= biggestAvailableBanknoteValue * countOfBanknotesOperation;
+            amount -= biggestAvailableBanknoteValue * amountOfBanknotesOperation;
 
-            banknotesForOutput.putIfAbsent(biggestAvailableBanknoteValue, countOfBanknotesOperation);
+            banknotesForOutput.putIfAbsent(biggestAvailableBanknoteValue, amountOfBanknotesOperation);
         }
 
         if (!banknotesForOutput.isEmpty()) {
 
-            if (!copyBanknotesOfCurrency.isEmpty()){
+            if (!copyBanknotesOfCurrency.isEmpty()) {
                 bank.put(currency, copyBanknotesOfCurrency);
-            }
-            else{
+            } else {
                 bank.remove(currency);
             }
 
@@ -94,7 +93,7 @@ public class CashBankTreeMap implements CashBank {
 
         Integer biggestAvailableBanknoteValue = 0;
 
-        for(Integer valueOfBanknotes : allAvailableBanknotes){
+        for (Integer valueOfBanknotes : allAvailableBanknotes) {
 
             if (biggestAvailableBanknoteValue <= valueOfBanknotes &&
                     valueOfBanknotes <= amount &&
@@ -147,7 +146,7 @@ public class CashBankTreeMap implements CashBank {
         return message.toString();
     }
 
-    public Map<String, Map<Integer, Integer>> getBank() {
+    Map<String, Map<Integer, Integer>> getBank() {
 
         return bank;
     }

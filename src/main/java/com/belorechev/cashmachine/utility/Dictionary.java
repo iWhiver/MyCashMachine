@@ -2,6 +2,7 @@ package com.belorechev.cashmachine.utility;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
+
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -45,7 +46,7 @@ public final class Dictionary {
     }
 
     @PostConstruct
-    private void init(){
+    private void init() {
         dictionary = this;
     }
 

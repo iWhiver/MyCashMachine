@@ -2,12 +2,21 @@ package com.belorechev.cashmachine.utility;
 
 public class Validator {
 
-    public static boolean isValidCountArguments(String[] operation, int expectedCount) {
+    private static final int MAX_AMOUNT_LETTERS_CURRENCY = 3;
 
-        return operation.length != expectedCount;
+    public static boolean isInvalidAmountOfArguments(String[] operation, int expectedAmountOfArguments) {
+
+        if (operation == null) {
+            throw new IllegalArgumentException();
+        }
+
+        return operation.length != expectedAmountOfArguments;
     }
 
     public static boolean isValidValue(Integer value) {
+
+        if (value == null)
+            throw new IllegalArgumentException();
 
         for (Integer validValue : Dictionary.getValidBanknotes()) {
             if (value.equals(validValue)) {
@@ -20,15 +29,54 @@ public class Validator {
 
     public static boolean isValidCurrency(String currency) {
 
-        return currency.equals(currency.toUpperCase()) && currency.length() == 3;
+        if (currency == null) {
+            throw new IllegalArgumentException();
+        }
+
+        if (currency.length() == MAX_AMOUNT_LETTERS_CURRENCY) {
+
+            return isValidRussianCurrency(currency) || isValidEnglishCurrency(currency);
+        }
+
+        return false;
+    }
+
+    private static boolean isValidRussianCurrency(String currency) {
+
+        for (int i = 0; i < MAX_AMOUNT_LETTERS_CURRENCY; i++) {
+
+            char symbol = currency.charAt(i);
+            if (!('А' <= symbol && symbol <= 'Я')) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static boolean isValidEnglishCurrency(String currency) {
+
+        for (int i = 0; i < MAX_AMOUNT_LETTERS_CURRENCY; i++) {
+
+            char symbol = currency.charAt(i);
+            if (!('A' <= symbol && symbol <= 'Z')) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public static boolean isPositive(Integer number) {
 
+        if (number == null) {
+            throw new IllegalArgumentException();
+        }
+
         return number > 0;
     }
 
-    private Validator(){
+    private Validator() {
         throw new IllegalStateException("Utility class");
 
     }

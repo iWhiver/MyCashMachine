@@ -35,9 +35,9 @@ public class Computer {
         commandsImplementations.add(new CommandPrintCash(cashBank));
         commandsImplementations.add(new CommandExit());
 
-        for(CommandTemplate commandForRun : commandsImplementations){
+        for (CommandTemplate commandForRun : commandsImplementations) {
 
-            if (commandForRun.isSuited(operation)){
+            if (commandForRun.isSuited(operation)) {
 
                 return commandForRun.apply(operation);
             }

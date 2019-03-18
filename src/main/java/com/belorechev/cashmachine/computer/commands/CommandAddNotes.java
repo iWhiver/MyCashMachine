@@ -4,27 +4,20 @@ import com.belorechev.cashmachine.utility.Validator;
 import com.belorechev.cashmachine.data.CashBank;
 import com.belorechev.cashmachine.utility.Dictionary;
 
-public class CommandAddNotes implements CommandTemplate {
+public class CommandAddNotes extends CommandTemplate {
 
     private final CashBank cashBank;
 
     public CommandAddNotes(CashBank cashBank) {
 
         this.cashBank = cashBank;
+        identification = "+";
     }
 
     @Override
-    public boolean isSuited(String[] operation) {
+    public String apply(String[] operation) {
 
-        String identification = "+";
-
-        return (operation[0].equals(identification));
-    }
-
-    @Override
-    public String apply(String[] operation){
-
-        if (Validator.isValidCountArguments(operation, 4)) {
+        if (Validator.isInvalidAmountOfArguments(operation, 4)) {
             return Dictionary.ERROR_STATUS;
         }
 
@@ -36,8 +29,7 @@ public class CommandAddNotes implements CommandTemplate {
         try {
             value = Integer.parseInt(operation[2]);
             number = Integer.parseInt(operation[3]);
-        }
-        catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             return Dictionary.ERROR_STATUS;
         }
 

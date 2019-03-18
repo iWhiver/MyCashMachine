@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 
-//TODO CheckNaming
 //TODO add functional for change currency
 
 @Component
@@ -24,7 +23,9 @@ public class LifeCircle {
     private final Computer computer;
 
     @Autowired
-    public LifeCircle(@Qualifier("ByConsole") CommandInput commandInput, @Qualifier("ByConsole") MessageOutput outputCom, Computer computer, Dictionary dictionaryInput) {
+    public LifeCircle(@Qualifier("ByConsole") CommandInput commandInput,
+                      @Qualifier("ByConsole") MessageOutput outputCom,
+                      Computer computer, Dictionary dictionaryInput) {
 
         this.commandInput = commandInput;
         this.outputCom = outputCom;

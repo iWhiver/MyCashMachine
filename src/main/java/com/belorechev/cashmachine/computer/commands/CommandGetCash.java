@@ -6,50 +6,42 @@ import com.belorechev.cashmachine.utility.Dictionary;
 
 import java.util.Optional;
 
-public class CommandGetCash implements CommandTemplate {
+public class CommandGetCash extends CommandTemplate {
 
     private final CashBank cashBank;
 
     public CommandGetCash(CashBank cashBank) {
 
         this.cashBank = cashBank;
-    }
-
-    @Override
-    public boolean isSuited(String[] operation) {
-
-        String identification = "-";
-
-        return operation[0].equals(identification);
+        identification = "-";
     }
 
     @Override
     public String apply(String[] operation) {
 
-        if (Validator.isValidCountArguments(operation, 3)) {
+        if (Validator.isInvalidAmountOfArguments(operation, 3)) {
             return Dictionary.ERROR_STATUS;
         }
 
-        String currency = operation[1];
         int amount;
 
         try {
             amount = Integer.parseInt(operation[2]);
-        }
-        catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             return Dictionary.ERROR_STATUS;
         }
+
+        String currency = operation[1];
 
         boolean isValid = Validator.isValidCurrency(currency) && Validator.isPositive(amount);
 
         if (isValid) {
+            Optional<String> usedBanknotesForOperation = cashBank.get(currency, amount);
 
-            Optional<String> extraStatus = cashBank.get(currency, amount);
-            if (extraStatus.isPresent()) {
-                return extraStatus.get() + Dictionary.OK_STATUS;
+            if (usedBanknotesForOperation.isPresent()) {
+                return usedBanknotesForOperation.get() + Dictionary.OK_STATUS;
             }
         }
-
         return Dictionary.ERROR_STATUS;
     }
 }
