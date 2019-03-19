@@ -1,11 +1,11 @@
 package com.belorechev.cashmachine.computer.commands
 
+import com.belorechev.cashmachine.data.Cash
 import com.belorechev.cashmachine.data.CashBank
 import org.junit.Test
 import org.mockito.Mockito
 
-import static com.belorechev.cashmachine.utility.Dictionary.ERROR_STATUS
-import static com.belorechev.cashmachine.utility.Dictionary.OK_STATUS
+import static com.belorechev.cashmachine.utility.Dictionary.*
 
 class CommandGetCashTest {
 
@@ -54,10 +54,14 @@ class CommandGetCashTest {
     @Test
     void shouldReturnOkStatus_ForSuitedApplyCommand() {
 
+        Set setForAdding = new TreeSet()
+
+        setForAdding << Mockito.mock(Cash.class)
+
         Mockito.when(cashBankMock
                 .get(Mockito.anyString(), Mockito.anyInt()))
-                .thenReturn(Optional.of(new TreeSet()))
+                .thenReturn(Optional.of(setForAdding))
 
-        assert OK_STATUS == commandGetCash.apply(identification, "USD", "100")
+        assert "0 0${NEW_LINE}${OK_STATUS}" == commandGetCash.apply(identification, "USD", "100")
     }
 }

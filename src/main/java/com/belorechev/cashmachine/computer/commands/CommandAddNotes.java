@@ -1,8 +1,8 @@
 package com.belorechev.cashmachine.computer.commands;
 
-import com.belorechev.cashmachine.utility.Validator;
 import com.belorechev.cashmachine.data.CashBank;
 import com.belorechev.cashmachine.utility.Dictionary;
+import com.belorechev.cashmachine.utility.Validator;
 
 public class CommandAddNotes extends CommandTemplate {
 

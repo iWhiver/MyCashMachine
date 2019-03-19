@@ -1,14 +1,14 @@
 package com.belorechev.cashmachine.computer.commands;
 
 import com.belorechev.cashmachine.data.Cash;
+import com.belorechev.cashmachine.data.CashBank;
 import com.belorechev.cashmachine.utility.Converter;
 import com.belorechev.cashmachine.utility.Validator;
-import com.belorechev.cashmachine.data.CashBank;
-
-import static com.belorechev.cashmachine.utility.Dictionary.*;
 
 import java.util.Optional;
 import java.util.Set;
+
+import static com.belorechev.cashmachine.utility.Dictionary.*;
 
 public class CommandGetCash extends CommandTemplate {
 

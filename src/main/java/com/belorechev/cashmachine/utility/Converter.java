@@ -4,35 +4,62 @@ import com.belorechev.cashmachine.data.Cash;
 
 import java.util.Set;
 
-//TODO add tests
-
 public final class Converter {
 
     public static String convertSetOfCashToString(Set<Cash> cashSet, String lineSeparator, boolean useCurrency, boolean useValue, boolean useAmountOfNotes) {
 
-        if (!(useCurrency || useValue || useAmountOfNotes))
-            throw new IllegalArgumentException("You must convert at least one value of Cash class");
+        checkValues(cashSet, lineSeparator, useCurrency, useValue, useAmountOfNotes);
 
-        StringBuilder message = new StringBuilder();
+        StringBuilder cashSetAsString = new StringBuilder();
 
         for (Cash cashForOperation : cashSet) {
 
+            boolean addedVariableEarlier = false;
+
             if (useCurrency) {
-                message.append(cashForOperation.getCurrency()).append(" ");
+
+                cashSetAsString.append(cashForOperation.getCurrency());
+                addedVariableEarlier = true;
             }
 
             if (useValue) {
-                message.append(cashForOperation.getValue()).append(" ");
+
+                if (addedVariableEarlier) {
+                    cashSetAsString.append(" ");
+                }
+
+                cashSetAsString.append(cashForOperation.getValue());
+                addedVariableEarlier = true;
             }
 
             if (useAmountOfNotes) {
-                message.append(cashForOperation.getAmountOfNotes());
+
+                if (addedVariableEarlier) {
+                    cashSetAsString.append(" ");
+                }
+
+                cashSetAsString.append(cashForOperation.getAmountOfNotes());
             }
 
-            message.append(lineSeparator);
+            cashSetAsString.append(lineSeparator);
         }
 
-        return message.toString();
+        return cashSetAsString.toString();
+    }
+
+    private static void checkValues(Set<Cash> cashSet, String lineSeparator, boolean useCurrency, boolean useValue, boolean useAmountOfNotes) {
+
+        if (!(useCurrency || useValue || useAmountOfNotes))
+            throw new IllegalArgumentException("You must convert at least one variable of Cash class");
+
+        if (lineSeparator == null)
+            throw new IllegalArgumentException("You must define not null lineSeparator");
+
+        if (cashSet == null)
+            throw new IllegalArgumentException("You must define not null Set of Cash");
+
+        if (cashSet.isEmpty())
+            throw new IllegalArgumentException("You must define not empty Set of Cash");
     }
 
     private Converter() {

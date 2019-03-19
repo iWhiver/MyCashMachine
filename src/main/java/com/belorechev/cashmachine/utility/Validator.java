@@ -7,7 +7,7 @@ public final class Validator {
     public static boolean isInvalidAmountOfArguments(String[] operation, int expectedAmountOfArguments) {
 
         if (operation == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Array of operation must be not null");
         }
 
         return operation.length != expectedAmountOfArguments;

@@ -1,10 +1,10 @@
 package com.belorechev.cashmachine.logic;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import com.belorechev.cashmachine.computer.Computer;
 import com.belorechev.cashmachine.input_output.CommandInput;
 import com.belorechev.cashmachine.input_output.MessageOutput;
 import com.belorechev.cashmachine.utility.Dictionary;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 

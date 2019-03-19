@@ -1,5 +1,6 @@
 package com.belorechev.cashmachine.computer
 
+import com.belorechev.cashmachine.data.Cash
 import com.belorechev.cashmachine.data.CashBank
 import org.junit.Test
 import org.mockito.Mockito
@@ -45,10 +46,15 @@ class ComputerTest {
 
     @Test
     void shouldReturnOkStatus_ForCommandGetCash() {
+
+        Set setForAdding = new TreeSet()
+
+        setForAdding << Mockito.mock(Cash.class)
+
         Mockito.when(cashBankMock
                 .get(Mockito.anyString(), Mockito.anyInt()))
-                .thenReturn(Optional.of(new TreeSet()))
+                .thenReturn(Optional.of(setForAdding))
 
-        assert OK_STATUS == computer.calculate("- USD 10")
+        assert "0 0${NEW_LINE}${OK_STATUS}" == computer.calculate("- USD 10")
     }
 }

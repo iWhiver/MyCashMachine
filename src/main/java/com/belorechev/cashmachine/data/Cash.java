@@ -2,8 +2,6 @@ package com.belorechev.cashmachine.data;
 
 import java.util.Objects;
 
-//TODO add tests
-
 public class Cash implements Comparable<Cash> {
 
     private final String currency;
@@ -18,9 +16,16 @@ public class Cash implements Comparable<Cash> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Cash)) return false;
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof Cash)) {
+            return false;
+        }
+
         Cash that = (Cash) o;
+
         return currency.equals(that.currency) &&
                 value.equals(that.value) &&
                 amountOfNotes.equals(that.amountOfNotes);

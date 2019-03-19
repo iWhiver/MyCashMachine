@@ -1,10 +1,82 @@
 package com.belorechev.cashmachine.data
 
+import org.junit.Before
 import org.junit.Test
 
-import static junit.framework.TestCase.assertEquals
+class TestCashBankTreeMap {
 
-class TestCashBankTreeMapGet extends TestBaseForCashBankTreeMap {
+    protected CashBankTreeMap cashBank
+
+    protected Map<String, Map<Integer, Integer>> expectedBank
+    protected Map<Integer, Integer> banknotesOfCurrency
+
+    @Before
+    void init() {
+
+        cashBank = new CashBankTreeMap()
+        expectedBank = new TreeMap<>()
+        banknotesOfCurrency = new TreeMap<>()
+    }
+
+    @Test
+    void addOneValue() {
+
+        cashBank.add("USD", 10, 10)
+
+        putInExpectedBankNewCurrency("USD", 10, 10)
+
+        assert expectedBank == cashBank.getBank()
+    }
+
+    @Test
+    void addTwoValues() {
+
+        cashBank.add("USD", 10, 10)
+        cashBank.add("USD", 50, 5)
+
+        putInExpectedBankNewCurrency("USD", 10, 10)
+        putInExpectedBankExistingCurrency(50, 5)
+
+        assert expectedBank == cashBank.getBank()
+    }
+
+    @Test
+    void addOneValueByTwoSteps1() {
+
+        cashBank.add("USD", 10, 5)
+        cashBank.add("USD", 10, 10)
+
+        putInExpectedBankNewCurrency("USD", 10, 10 + 5)
+
+        assert expectedBank == cashBank.getBank()
+    }
+
+    @Test
+    void addOneValueByTwoSteps2() {
+
+        cashBank.add("USD", 10, 5)
+        cashBank.add("USD", 10, 10)
+        cashBank.add("USD", 100, 5)
+        cashBank.add("USD", 100, 10)
+
+
+        putInExpectedBankNewCurrency("USD", 10, 10 + 5)
+        putInExpectedBankExistingCurrency(100, 10 + 5)
+
+        assert expectedBank == cashBank.getBank()
+    }
+
+    @Test
+    void addTwoCurrencies() {
+
+        cashBank.add("RUB", 10, 5)
+        cashBank.add("USD", 10, 5)
+
+        putInExpectedBankNewCurrency("USD", 10, 5)
+        putInExpectedBankNewCurrency("RUB", 10, 5)
+
+        assert expectedBank == cashBank.getBank()
+    }
 
     @Test
     void getLastValue_EmptyCurrency_EmptyBank() {
@@ -22,7 +94,7 @@ class TestCashBankTreeMapGet extends TestBaseForCashBankTreeMap {
 
         putInExpectedBankNewCurrency("RUB", 1, 1)
 
-        assertEquals(expectedBank, cashBank.getBank())
+        assert expectedBank == cashBank.getBank()
     }
 
     @Test
@@ -33,7 +105,7 @@ class TestCashBankTreeMapGet extends TestBaseForCashBankTreeMap {
 
         putInExpectedBankNewCurrency("USD", 10, 1)
 
-        assertEquals(expectedBank, cashBank.getBank())
+        assert expectedBank == cashBank.getBank()
     }
 
     @Test
@@ -45,7 +117,7 @@ class TestCashBankTreeMapGet extends TestBaseForCashBankTreeMap {
         putInExpectedBankNewCurrency("USD", 100, 1)
         putInExpectedBankExistingCurrency(10, 1)
 
-        assertEquals(expectedBank, cashBank.getBank())
+        assert expectedBank == cashBank.getBank()
     }
 
 
@@ -57,7 +129,7 @@ class TestCashBankTreeMapGet extends TestBaseForCashBankTreeMap {
 
         putInExpectedBankNewCurrency("USD", 10, 1)
 
-        assertEquals(expectedBank, cashBank.getBank())
+        assert expectedBank == cashBank.getBank()
     }
 
     @Test
@@ -193,4 +265,17 @@ class TestCashBankTreeMapGet extends TestBaseForCashBankTreeMap {
         assert expectedBank == cashBank.getBank()
 
     }
+
+    void putInExpectedBankNewCurrency(String currency, Integer value, Integer number) {
+
+        banknotesOfCurrency = new TreeMap<>()
+        banknotesOfCurrency[value] = number
+        expectedBank[currency] = banknotesOfCurrency
+    }
+
+    void putInExpectedBankExistingCurrency(Integer value, Integer number) {
+
+        banknotesOfCurrency[value] = number
+    }
+
 }
