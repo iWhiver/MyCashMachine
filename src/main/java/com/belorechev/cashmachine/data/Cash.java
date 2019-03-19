@@ -2,6 +2,8 @@ package com.belorechev.cashmachine.data;
 
 import java.util.Objects;
 
+//TODO add tests
+
 public class Cash implements Comparable<Cash> {
 
     private final String currency;

@@ -16,5 +16,6 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    compile "org.springframework.boot:spring-boot-configuration-processor"
+    compile 'org.springframework.boot:spring-boot-configuration-processor'
+    compile 'org.codehaus.groovy:groovy:2.5.6'
 }

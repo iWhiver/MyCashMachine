@@ -4,6 +4,8 @@ import com.belorechev.cashmachine.data.Cash;
 
 import java.util.Set;
 
+//TODO add tests
+
 public final class Converter {
 
     public static String convertSetOfCashToString(Set<Cash> cashSet, String lineSeparator, boolean useCurrency, boolean useValue, boolean useAmountOfNotes) {

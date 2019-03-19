@@ -4,6 +4,7 @@ import com.belorechev.cashmachine.data.Cash;
 import com.belorechev.cashmachine.utility.Converter;
 import com.belorechev.cashmachine.utility.Validator;
 import com.belorechev.cashmachine.data.CashBank;
+
 import static com.belorechev.cashmachine.utility.Dictionary.*;
 
 import java.util.Optional;
@@ -43,7 +44,9 @@ public class CommandGetCash extends CommandTemplate {
 
             if (usedBanknotesForOperation.isPresent()) {
 
-                String stringRepresentationOfBanknotes = Converter.convertSetOfCashToString(usedBanknotesForOperation.get(), NEW_LINE, false, true, true);
+                String stringRepresentationOfBanknotes = Converter.
+                        convertSetOfCashToString(usedBanknotesForOperation.get(), NEW_LINE, false, true, true);
+
                 return stringRepresentationOfBanknotes + OK_STATUS;
             }
         }
