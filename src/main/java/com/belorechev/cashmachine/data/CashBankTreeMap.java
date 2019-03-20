@@ -39,10 +39,12 @@ public class CashBankTreeMap implements CashBank {
         bank.put(currency, banknotesOfCurrency);
     }
 
-    public Optional<Set<Cash>> get(String currency, int amount) {
+    public Set<Cash> get(String currency, int amount) {
+
+        Set<Cash> emptySet = new TreeSet<>();
 
         if (!bank.containsKey(currency)) {
-            return Optional.empty();
+            return emptySet;
         }
 
         Map<Integer, Integer> realBanknotesOfCurrency = bank.get(currency);
@@ -54,7 +56,7 @@ public class CashBankTreeMap implements CashBank {
             Integer biggestAvailableBanknoteValue = getBiggestAvailableBanknoteValue(amount, copyBanknotesOfCurrency);
 
             if (biggestAvailableBanknoteValue == 0) {
-                return Optional.empty();
+                return emptySet;
             }
 
             int amountOfBanknotes = copyBanknotesOfCurrency.get(biggestAvailableBanknoteValue);
@@ -80,11 +82,10 @@ public class CashBankTreeMap implements CashBank {
                 bank.remove(currency);
             }
 
-            return Optional.of(
-                    banknotesForOutput);
+            return banknotesForOutput;
         }
 
-        return Optional.empty();
+        return emptySet;
     }
 
     private Integer getBiggestAvailableBanknoteValue(int amount, Map<Integer, Integer> copyBanknotesOfCurrency) {

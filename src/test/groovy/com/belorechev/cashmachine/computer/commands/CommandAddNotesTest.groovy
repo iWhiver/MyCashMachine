@@ -38,7 +38,7 @@ class CommandAddNotesTest {
     void shouldReturnOkStatus_ForEachCommandFromDictionary() {
 
         for (banknote in Dictionary.getValidBanknotes()) {
-            String command = "+ USD ${banknote} 50"
+            String command = "+ USD $banknote 50"
             assert OK_STATUS == commandAddNotes.apply(command.split())
         }
     }

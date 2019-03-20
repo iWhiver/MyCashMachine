@@ -53,8 +53,8 @@ class ComputerTest {
 
         Mockito.when(cashBankMock
                 .get(Mockito.anyString(), Mockito.anyInt()))
-                .thenReturn(Optional.of(setForAdding))
+                .thenReturn(setForAdding)
 
-        assert "0 0${NEW_LINE}${OK_STATUS}" == computer.calculate("- USD 10")
+        assert "0 0$NEW_LINE$OK_STATUS" == computer.calculate("- USD 10")
     }
 }

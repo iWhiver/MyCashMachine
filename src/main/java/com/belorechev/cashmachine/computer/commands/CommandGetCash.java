@@ -5,7 +5,6 @@ import com.belorechev.cashmachine.data.CashBank;
 import com.belorechev.cashmachine.utility.Converter;
 import com.belorechev.cashmachine.utility.Validator;
 
-import java.util.Optional;
 import java.util.Set;
 
 import static com.belorechev.cashmachine.utility.Dictionary.*;
@@ -40,12 +39,12 @@ public class CommandGetCash extends CommandTemplate {
         boolean isValid = Validator.isValidCurrency(currency) && Validator.isPositive(amount);
 
         if (isValid) {
-            Optional<Set<Cash>> usedBanknotesForOperation = cashBank.get(currency, amount);
+            Set<Cash> usedBanknotesForOperation = cashBank.get(currency, amount);
 
-            if (usedBanknotesForOperation.isPresent()) {
+            if (!usedBanknotesForOperation.isEmpty()) {
 
                 String stringRepresentationOfBanknotes = Converter.
-                        convertSetOfCashToString(usedBanknotesForOperation.get(), NEW_LINE, false, true, true);
+                        convertSetOfCashToString(usedBanknotesForOperation, NEW_LINE, false, true, true);
 
                 return stringRepresentationOfBanknotes + OK_STATUS;
             }

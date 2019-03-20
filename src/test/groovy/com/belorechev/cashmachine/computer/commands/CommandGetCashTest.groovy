@@ -60,8 +60,8 @@ class CommandGetCashTest {
 
         Mockito.when(cashBankMock
                 .get(Mockito.anyString(), Mockito.anyInt()))
-                .thenReturn(Optional.of(setForAdding))
+                .thenReturn(setForAdding)
 
-        assert "0 0${NEW_LINE}${OK_STATUS}" == commandGetCash.apply(identification, "USD", "100")
+        assert "0 0$NEW_LINE$OK_STATUS" == commandGetCash.apply(identification, "USD", "100")
     }
 }
