@@ -1,6 +1,8 @@
 package com.belorechev.cashmachine.computer;
 
 import com.belorechev.cashmachine.computer.commands.*;
+import com.belorechev.cashmachine.computer.processors.Validator;
+import com.belorechev.cashmachine.computer.processors.ValidatorStandardImplementation;
 import com.belorechev.cashmachine.data.CashBank;
 import com.belorechev.cashmachine.utility.Dictionary;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +16,16 @@ import java.util.List;
 public class Computer {
 
     private final CashBank cashBank;
+    private final Validator validator;
 
     @Autowired
     public Computer(@Qualifier("TreeMap") CashBank cashBank) {
+        this(cashBank, new ValidatorStandardImplementation());
+    }
+
+    public Computer(CashBank cashBank, Validator validator) {
         this.cashBank = cashBank;
+        this.validator = validator;
     }
 
     public String calculate(String command) {
@@ -30,9 +38,9 @@ public class Computer {
 
         List<CommandTemplate> commandsImplementations = new ArrayList<>();
 
-        commandsImplementations.add(new CommandAddNotes(cashBank));
-        commandsImplementations.add(new CommandGetCash(cashBank));
-        commandsImplementations.add(new CommandPrintCash(cashBank));
+        commandsImplementations.add(new CommandAddNotes(cashBank, validator));
+        commandsImplementations.add(new CommandGetCash(cashBank, validator));
+        commandsImplementations.add(new CommandPrintCash(cashBank, validator));
         commandsImplementations.add(new CommandExit());
 
         for (CommandTemplate commandForRun : commandsImplementations) {

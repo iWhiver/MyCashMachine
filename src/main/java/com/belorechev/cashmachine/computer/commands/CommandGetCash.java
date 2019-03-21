@@ -1,9 +1,9 @@
 package com.belorechev.cashmachine.computer.commands;
 
+import com.belorechev.cashmachine.computer.processors.Converter;
+import com.belorechev.cashmachine.computer.processors.Validator;
 import com.belorechev.cashmachine.data.Cash;
 import com.belorechev.cashmachine.data.CashBank;
-import com.belorechev.cashmachine.utility.Converter;
-import com.belorechev.cashmachine.utility.Validator;
 
 import java.util.Set;
 
@@ -12,17 +12,19 @@ import static com.belorechev.cashmachine.utility.Dictionary.*;
 public class CommandGetCash extends CommandTemplate {
 
     private final CashBank cashBank;
+    private final Validator validator;
 
-    public CommandGetCash(CashBank cashBank) {
+    public CommandGetCash(CashBank cashBank, Validator validator) {
 
         this.cashBank = cashBank;
+        this.validator = validator;
         identification = "-";
     }
 
     @Override
     public String apply(String[] operation) {
 
-        if (Validator.isInvalidAmountOfArguments(operation, 3)) {
+        if (validator.isInvalidAmountOfArguments(operation, 3)) {
             return ERROR_STATUS;
         }
 
@@ -36,7 +38,7 @@ public class CommandGetCash extends CommandTemplate {
 
         String currency = operation[1];
 
-        boolean isValid = Validator.isValidCurrency(currency) && Validator.isPositive(amount);
+        boolean isValid = validator.isValidCurrency(currency) && validator.isPositive(amount);
 
         if (isValid) {
             Set<Cash> usedBanknotesForOperation = cashBank.get(currency, amount);

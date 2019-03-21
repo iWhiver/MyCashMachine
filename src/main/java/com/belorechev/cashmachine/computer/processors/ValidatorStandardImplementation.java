@@ -1,10 +1,13 @@
-package com.belorechev.cashmachine.utility;
+package com.belorechev.cashmachine.computer.processors;
 
-public final class Validator {
+import com.belorechev.cashmachine.utility.Dictionary;
+
+public final class ValidatorStandardImplementation implements Validator {
 
     private static final int MAX_AMOUNT_LETTERS_CURRENCY = 3;
 
-    public static boolean isInvalidAmountOfArguments(String[] operation, int expectedAmountOfArguments) {
+    @Override
+    public boolean isInvalidAmountOfArguments(String[] operation, int expectedAmountOfArguments) {
 
         if (operation == null) {
             throw new IllegalArgumentException("Array of operation must be not null");
@@ -13,7 +16,46 @@ public final class Validator {
         return operation.length != expectedAmountOfArguments;
     }
 
-    public static boolean isValidValue(Integer value) {
+    @Override
+    public boolean isValidCurrency(String currency) {
+
+        if (currency == null) {
+            throw new IllegalArgumentException();
+        }
+
+        if (currency.length() == MAX_AMOUNT_LETTERS_CURRENCY) {
+
+            return isValidRussianCurrency(currency) || isValidEnglishCurrency(currency);
+        }
+        return false;
+    }
+
+    private boolean isValidRussianCurrency(String currency) {
+
+        for (int i = 0; i < MAX_AMOUNT_LETTERS_CURRENCY; i++) {
+
+            char symbol = currency.charAt(i);
+            if (!('А' <= symbol && symbol <= 'Я')) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isValidEnglishCurrency(String currency) {
+
+        for (int i = 0; i < MAX_AMOUNT_LETTERS_CURRENCY; i++) {
+
+            char symbol = currency.charAt(i);
+            if (!('A' <= symbol && symbol <= 'Z')) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean isValidValue(Integer value) {
 
         if (value == null)
             throw new IllegalArgumentException();
@@ -27,57 +69,14 @@ public final class Validator {
         return false;
     }
 
-    public static boolean isValidCurrency(String currency) {
 
-        if (currency == null) {
-            throw new IllegalArgumentException();
-        }
-
-        if (currency.length() == MAX_AMOUNT_LETTERS_CURRENCY) {
-
-            return isValidRussianCurrency(currency) || isValidEnglishCurrency(currency);
-        }
-
-        return false;
-    }
-
-    private static boolean isValidRussianCurrency(String currency) {
-
-        for (int i = 0; i < MAX_AMOUNT_LETTERS_CURRENCY; i++) {
-
-            char symbol = currency.charAt(i);
-            if (!('А' <= symbol && symbol <= 'Я')) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    private static boolean isValidEnglishCurrency(String currency) {
-
-        for (int i = 0; i < MAX_AMOUNT_LETTERS_CURRENCY; i++) {
-
-            char symbol = currency.charAt(i);
-            if (!('A' <= symbol && symbol <= 'Z')) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public static boolean isPositive(Integer number) {
+    @Override
+    public boolean isPositive(Integer number) {
 
         if (number == null) {
             throw new IllegalArgumentException();
         }
 
         return number > 0;
-    }
-
-    private Validator() {
-        throw new IllegalStateException("Utility class");
-
     }
 }

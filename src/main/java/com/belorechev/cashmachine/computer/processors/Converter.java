@@ -1,8 +1,10 @@
-package com.belorechev.cashmachine.utility;
+package com.belorechev.cashmachine.computer.processors;
 
 import com.belorechev.cashmachine.data.Cash;
 
 import java.util.Set;
+
+//TODO Change to interface
 
 public final class Converter {
 

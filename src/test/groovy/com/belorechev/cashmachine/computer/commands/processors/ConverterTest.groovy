@@ -1,9 +1,12 @@
-package com.belorechev.cashmachine.utility
+package com.belorechev.cashmachine.computer.commands.processors
 
+import com.belorechev.cashmachine.computer.processors.Converter
 import com.belorechev.cashmachine.data.Cash
 import org.junit.BeforeClass
 import org.junit.Test
 import org.mockito.Mockito
+
+//TODO Change as interface implementation
 
 class ConverterTest {
 

@@ -1,120 +1,122 @@
-package com.belorechev.cashmachine.utility
+package com.belorechev.cashmachine.computer.commands.processors
 
+import com.belorechev.cashmachine.computer.processors.Validator
+import com.belorechev.cashmachine.computer.processors.ValidatorStandardImplementation
+import org.junit.BeforeClass
 import org.junit.Test
 
-class ValidatorTest {
+class ValidatorStandardImplementationTest {
+
+    private static Validator validator
+
+    @BeforeClass
+    static void setUp() {
+        validator = new ValidatorStandardImplementation()
+    }
 
     @Test
     void shouldReturnFalse_IfArrayLengthEqualsExpectedAmountOfArguments() {
 
         int length = 4
-        assert !Validator.isInvalidAmountOfArguments(new String[length], length)
+        assert !validator.isInvalidAmountOfArguments(new String[length], length)
     }
 
     @Test
     void shouldReturnTrue_IfArrayLengthEqualsToExpectedAmountOfArguments() {
 
         int length = 3
-        assert Validator.isInvalidAmountOfArguments(new String[length], length + 1)
+        assert validator.isInvalidAmountOfArguments(new String[length], length + 1)
     }
 
     @Test(expected = IllegalArgumentException.class)
     void shouldThrowException_IfArrayIsNull() {
 
-        Validator.isInvalidAmountOfArguments(null, 1)
+        validator.isInvalidAmountOfArguments(null, 1)
     }
 
     @Test
     void shouldReturnTrue_ForPositiveValue() {
-        assert Validator.isPositive(10)
+        assert validator.isPositive(10)
     }
 
     @Test
     void shouldReturnFalse_ForNegativeValue() {
-        assert !Validator.isPositive(-10)
+        assert !validator.isPositive(-10)
     }
 
     @Test
     void shouldReturnFalse_ForZero() {
-        assert !Validator.isPositive(0)
+        assert !validator.isPositive(0)
     }
 
     @Test(expected = IllegalArgumentException.class)
     void shouldThrowException_ForNull() {
-        Validator.isPositive(null)
+        validator.isPositive(null)
     }
 
     @Test
     void shouldReturnTrue_ForThreeUppercaseLettersRussianLanguageCurrency() {
-        assert Validator.isValidCurrency("РУБ")
+        assert validator.isValidCurrency("РУБ")
     }
 
     @Test
     void shouldReturnTrue_ForThreeUppercaseLettersEnglishLanguageCurrency() {
-        assert Validator.isValidCurrency("RUB")
+        assert validator.isValidCurrency("RUB")
     }
 
     @Test(expected = IllegalArgumentException.class)
     void shouldThrowException_ForNullCurrency() {
 
-        Validator.isValidCurrency(null)
+        validator.isValidCurrency(null)
     }
 
     @Test
     void shouldReturnFalse_ForDigits() {
-        assert !Validator.isValidCurrency("101")
+        assert !validator.isValidCurrency("101")
     }
 
     @Test
     void shouldReturnFalse_ForSymbols() {
-        assert !Validator.isValidCurrency("*/+")
+        assert !validator.isValidCurrency("*/+")
     }
 
     @Test
     void shouldReturnFalse_ForSymbolAndLetters() {
-        assert !Validator.isValidCurrency("US+")
+        assert !validator.isValidCurrency("US+")
     }
 
     @Test
     void shouldReturnFalse_ForSymbolAndDigits() {
-        assert !Validator.isValidCurrency("1.0")
+        assert !validator.isValidCurrency("1.0")
     }
 
     @Test
     void shouldReturnFalse_ForDigitAndLetters() {
-        assert !Validator.isValidCurrency("US0")
+        assert !validator.isValidCurrency("US0")
     }
 
     @Test
     void shouldReturnFalse_ForUppercaseLettersFromRussianAndEnglishLanguages() {
-        assert !Validator.isValidCurrency("USД")
+        assert !validator.isValidCurrency("USД")
     }
 
     @Test
     void shouldReturnFalse_ForTwoUppercaseLettersEnglishLanguageCurrency() {
-        assert !Validator.isValidCurrency("US")
+        assert !validator.isValidCurrency("US")
     }
 
     @Test
     void shouldReturnFalse_ForTwoUppercaseLettersRussianLanguageCurrency() {
-        assert !Validator.isValidCurrency("РУ")
+        assert !validator.isValidCurrency("РУ")
     }
 
     @Test
     void shouldReturnFalse_ForEmptyString() {
-        assert !Validator.isValidCurrency("")
+        assert !validator.isValidCurrency("")
     }
 
     @Test(expected = IllegalArgumentException.class)
     void shouldThrowException_IfValueIsNull() {
-        Validator.isValidValue(null)
-    }
-
-    @Test
-    void shouldReturnTrue_ForEachValueOfBanknotesFromDictionary() {
-
-        for (validValue in Dictionary.getValidBanknotes()) {
-            Validator.isValidValue(validValue)
-        }
+        validator.isValidValue(null)
     }
 }

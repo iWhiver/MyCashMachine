@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 
-//TODO add functional for change currency
-
 @Component
 public class LifeCircle {
 
