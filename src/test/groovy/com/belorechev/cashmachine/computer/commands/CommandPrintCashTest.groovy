@@ -12,8 +12,6 @@ import static org.junit.Assert.assertThat
 import static org.mockito.Mockito.verify
 import static org.mockito.Mockito.when
 
-//TODO check mock CashBank
-
 class CommandPrintCashTest {
 
     private final CashBank cashBankMock = Mockito.mock(CashBank.class)
@@ -25,15 +23,14 @@ class CommandPrintCashTest {
 
     @Test
     void shouldReturnTrue_ForIdentificationOfClass() {
-
-        assert commandPrintCash.isSuited(identification)
+        assertThat(commandPrintCash.isSuited(identification), is(true))
     }
 
     @Test(expected = IllegalStateException.class)
     void shouldThrowException_IfClassNotChangeValueOfIdentification() {
 
         commandPrintCash.identification = null
-        assert commandPrintCash.isSuited(identification)
+        commandPrintCash.isSuited(identification)
     }
 
     @Test
@@ -42,24 +39,21 @@ class CommandPrintCashTest {
         String[] operation = [identification, identification]
 
         when(validatorMock.isInvalidAmountOfArguments(operation, expectedAmountOfArguments)).thenReturn(true)
-
         assertThat(commandPrintCash.apply(operation), is(ERROR_STATUS))
-
         verify(validatorMock).isInvalidAmountOfArguments(operation, expectedAmountOfArguments)
     }
 
     @Test
-    void shouldReturnOkStatus_ForSuitedApplyCommand_AndInvokeMethodForValidation() {
+    void shouldReturnOkStatus_ForSuitedApplyCommand_AndInvokeMethodForValidation_AndInvokeMethodFromCashBank() {
 
         when(cashBankMock.getPrintForm()).thenReturn("")
 
         String[] operation = [identification]
 
         when(validatorMock.isInvalidAmountOfArguments(operation, expectedAmountOfArguments)).thenReturn(false)
-
         assertThat(commandPrintCash.apply(operation), is(OK_STATUS))
-
         verify(validatorMock).isInvalidAmountOfArguments(operation, expectedAmountOfArguments)
+        verify(cashBankMock).getPrintForm()
     }
 
 

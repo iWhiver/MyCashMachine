@@ -26,7 +26,6 @@ public final class Dictionary {
     private static Dictionary dictionary;
 
     public static List<Integer> getValidBanknotes() {
-
         return dictionary.validBanknotes;
     }
 

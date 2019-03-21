@@ -12,8 +12,6 @@ import static org.junit.Assert.assertThat
 import static org.mockito.Mockito.verify
 import static org.mockito.Mockito.when
 
-//TODO check mock CashBank
-
 class CommandGetCashTest {
 
     private final CashBank cashBankMock = Mockito.mock(CashBank.class)
@@ -25,19 +23,18 @@ class CommandGetCashTest {
 
     @Test
     void shouldReturnTrue_ForIdentificationOfClass() {
-
-        assert commandGetCash.isSuited(identification)
+        assertThat(commandGetCash.isSuited(identification), is(true))
     }
 
     @Test(expected = IllegalStateException.class)
     void shouldThrowException_IfClassNotChangeValueOfIdentification() {
 
         commandGetCash.identification = null
-        assert commandGetCash.isSuited(identification)
+        commandGetCash.isSuited(identification)
     }
 
     @Test
-    void shouldReturnOkStatus_ForSuitedApplyCommand_AndInvokeAllMethodsForValidation() {
+    void shouldReturnOkStatus_ForSuitedApplyCommand_AndInvokeAllMethodsForValidation_AndInvokeMethodFromCashBank() {
 
         Set setForAdding = new TreeSet()
         setForAdding << Mockito.mock(Cash.class)
@@ -58,6 +55,7 @@ class CommandGetCashTest {
         verify(validatorMock).isValidCurrency(operation[1])
         verify(validatorMock).isPositive(operation[2] as Integer)
 
+        verify(cashBankMock).get(operation[1], operation[2] as Integer)
     }
 
     @Test
@@ -70,7 +68,6 @@ class CommandGetCashTest {
         assertThat(commandGetCash.apply(operation), is(ERROR_STATUS))
 
         verify(validatorMock).isInvalidAmountOfArguments(operation, expectedAmountOfArguments)
-
     }
 
     @Test

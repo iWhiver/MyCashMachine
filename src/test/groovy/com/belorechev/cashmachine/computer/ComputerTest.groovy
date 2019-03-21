@@ -7,10 +7,11 @@ import org.junit.Test
 import org.mockito.Mockito
 
 import static com.belorechev.cashmachine.utility.Dictionary.*
+import static org.hamcrest.CoreMatchers.either
+import static org.hamcrest.CoreMatchers.is
+import static org.junit.Assert.assertThat
 import static org.mockito.Mockito.verify
 import static org.mockito.Mockito.when
-
-//TODO add verify for cashBankMonk
 
 class ComputerTest {
 
@@ -20,37 +21,40 @@ class ComputerTest {
 
     @Test
     void shouldReturnErrorStatus_ForEmptyCommand() {
-        assert ERROR_STATUS == computer.calculate("")
+        assertThat(computer.calculate(""), is(ERROR_STATUS))
     }
 
     @Test
     void shouldReturnErrorStatus_ForNullCommand() {
-        assert ERROR_STATUS == computer.calculate(null)
+        assertThat(computer.calculate(null), is(ERROR_STATUS))
     }
 
     @Test
     void shouldReturnExitStatus_ForUppercaseCommandExit() {
-        assert EXIT_STATUS == computer.calculate("EXIT")
+        assertThat(computer.calculate("EXIT"), is(EXIT_STATUS))
     }
 
     @Test
     void shouldReturnExitStatus_ForLowercaseCommandExit() {
-        assert EXIT_STATUS == computer.calculate("exit")
+        assertThat(computer.calculate("exit"), is(EXIT_STATUS))
     }
 
     @Test
-    void shouldReturnOkStatus_ForCommandPrintCash() {
+    void shouldReturnOkStatus_ForCommandPrintCash_AndInvokeMethodForValidation_AndInvokeMethodFromCashBank() {
         String[] operation = ["?"]
         int expectedAmountOfArguments = 1
 
         when(cashBankMock.getPrintForm()).thenReturn("")
         when(validatorMock.isInvalidAmountOfArguments(operation, expectedAmountOfArguments)).thenReturn(false)
-        assert OK_STATUS == computer.calculate(operation[0])
+
+        assertThat(computer.calculate(operation[0]), is(OK_STATUS))
+
         verify(validatorMock).isInvalidAmountOfArguments(operation, expectedAmountOfArguments)
+        verify(cashBankMock).getPrintForm()
     }
 
     @Test
-    void shouldReturnOkStatus_ForCommandAddNotes() {
+    void shouldReturnOkStatus_ForCommandAddNotes_AndInvokeAllMethodsForValidation_AndInvokeMethodFromCashBank() {
 
         String[] operation = ["+", "USD", "10", "10"]
 
@@ -61,16 +65,17 @@ class ComputerTest {
         when(validatorMock.isValidValue(operation[2] as Integer)).thenReturn(true)
         when(validatorMock.isPositive(operation[3] as Integer)).thenReturn(true)
 
-        assert computer.calculate(operation.join(" ")) == OK_STATUS
+        assertThat(computer.calculate(operation.join(" ")), is(OK_STATUS))
 
         verify(validatorMock).isInvalidAmountOfArguments(operation, expectedAmountOfArguments)
         verify(validatorMock).isValidCurrency(operation[1])
         verify(validatorMock).isValidValue(operation[2] as Integer)
         verify(validatorMock).isPositive(operation[3] as Integer)
+        verify(cashBankMock).add(operation[1], operation[2] as Integer, operation[3] as Integer)
     }
 
     @Test
-    void shouldReturnOkStatus_ForCommandGetCash() {
+    void shouldReturnOkStatus_ForCommandGetCash_AndInvokeAllMethodsForValidation_AndInvokeMethodFromCashBank() {
 
         Set setForAdding = new TreeSet()
         setForAdding << Mockito.mock(Cash.class)
@@ -84,12 +89,11 @@ class ComputerTest {
         when(validatorMock.isValidCurrency(operation[1])).thenReturn(true)
         when(validatorMock.isPositive(operation[2] as Integer)).thenReturn(true)
 
-        assert computer.calculate(operation.join(" ")) == "0 0$NEW_LINE$OK_STATUS"
+        assertThat(computer.calculate(operation.join(" ")), either(is("0 0" + NEW_LINE + OK_STATUS)) | is("0 0" + OK_STATUS))
 
         verify(validatorMock).isInvalidAmountOfArguments(operation, expectedAmountOfArguments)
         verify(validatorMock).isValidCurrency(operation[1])
         verify(validatorMock).isPositive(operation[2] as Integer)
-
-
+        verify(cashBankMock).get(operation[1], operation[2] as Integer)
     }
 }

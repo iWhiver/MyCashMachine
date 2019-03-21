@@ -3,6 +3,9 @@ package com.belorechev.cashmachine.data
 import org.junit.Before
 import org.junit.Test
 
+import static org.hamcrest.CoreMatchers.is
+import static org.junit.Assert.assertThat
+
 class TestCashBankTreeMap {
 
     protected CashBankTreeMap cashBank
@@ -22,10 +25,9 @@ class TestCashBankTreeMap {
     void addOneValue() {
 
         cashBank.add("USD", 10, 10)
-
         putInExpectedBankNewCurrency("USD", 10, 10)
 
-        assert expectedBank == cashBank.getBank()
+        assertThat(expectedBank, is(cashBank.getBank()))
     }
 
     @Test
@@ -37,7 +39,7 @@ class TestCashBankTreeMap {
         putInExpectedBankNewCurrency("USD", 10, 10)
         putInExpectedBankExistingCurrency(50, 5)
 
-        assert expectedBank == cashBank.getBank()
+        assertThat(expectedBank, is(cashBank.getBank()))
     }
 
     @Test
@@ -48,7 +50,7 @@ class TestCashBankTreeMap {
 
         putInExpectedBankNewCurrency("USD", 10, 10 + 5)
 
-        assert expectedBank == cashBank.getBank()
+        assertThat(expectedBank, is(cashBank.getBank()))
     }
 
     @Test
@@ -63,7 +65,7 @@ class TestCashBankTreeMap {
         putInExpectedBankNewCurrency("USD", 10, 10 + 5)
         putInExpectedBankExistingCurrency(100, 10 + 5)
 
-        assert expectedBank == cashBank.getBank()
+        assertThat(expectedBank, is(cashBank.getBank()))
     }
 
     @Test
@@ -75,7 +77,7 @@ class TestCashBankTreeMap {
         putInExpectedBankNewCurrency("USD", 10, 5)
         putInExpectedBankNewCurrency("RUB", 10, 5)
 
-        assert expectedBank == cashBank.getBank()
+        assertThat(expectedBank, is(cashBank.getBank()))
     }
 
     @Test
@@ -83,7 +85,7 @@ class TestCashBankTreeMap {
         cashBank.add("USD", 1, 1)
         cashBank.get("USD", 1)
 
-        assert cashBank.getBank().isEmpty()
+        assertThat(expectedBank, is(cashBank.getBank()))
     }
 
     @Test
@@ -94,7 +96,7 @@ class TestCashBankTreeMap {
 
         putInExpectedBankNewCurrency("RUB", 1, 1)
 
-        assert expectedBank == cashBank.getBank()
+        assertThat(expectedBank, is(cashBank.getBank()))
     }
 
     @Test
@@ -105,7 +107,7 @@ class TestCashBankTreeMap {
 
         putInExpectedBankNewCurrency("USD", 10, 1)
 
-        assert expectedBank == cashBank.getBank()
+        assertThat(expectedBank, is(cashBank.getBank()))
     }
 
     @Test
@@ -117,7 +119,7 @@ class TestCashBankTreeMap {
         putInExpectedBankNewCurrency("USD", 100, 1)
         putInExpectedBankExistingCurrency(10, 1)
 
-        assert expectedBank == cashBank.getBank()
+        assertThat(expectedBank, is(cashBank.getBank()))
     }
 
 
@@ -129,7 +131,7 @@ class TestCashBankTreeMap {
 
         putInExpectedBankNewCurrency("USD", 10, 1)
 
-        assert expectedBank == cashBank.getBank()
+        assertThat(expectedBank, is(cashBank.getBank()))
     }
 
     @Test
@@ -140,7 +142,7 @@ class TestCashBankTreeMap {
 
         putInExpectedBankNewCurrency("USD", 100, 9)
 
-        assert expectedBank == cashBank.getBank()
+        assertThat(expectedBank, is(cashBank.getBank()))
     }
 
     @Test
@@ -151,7 +153,7 @@ class TestCashBankTreeMap {
         cashBank.add("USD", 50, 1)
         cashBank.get("USD", 1 + 5 + 10 + 50)
 
-        assert cashBank.getBank().isEmpty()
+        assertThat(cashBank.getBank().isEmpty(), is(true))
     }
 
     @Test
@@ -161,7 +163,7 @@ class TestCashBankTreeMap {
         cashBank.add("USD", 1, 5)
         cashBank.get("USD", 100 * 5 + 10 * 5 + 5)
 
-        assert cashBank.getBank().isEmpty()
+        assertThat(cashBank.getBank().isEmpty(), is(true))
     }
 
     @Test
@@ -175,7 +177,7 @@ class TestCashBankTreeMap {
         cashBank.get("USD", 1 + 5 + 10 + 50)
         putInExpectedBankNewCurrency("RUB", 1, 1)
 
-        assert expectedBank == cashBank.getBank()
+        assertThat(expectedBank, is(cashBank.getBank()))
     }
 
     @Test
@@ -189,7 +191,7 @@ class TestCashBankTreeMap {
         putInExpectedBankExistingCurrency(10, 48)
         putInExpectedBankNewCurrency("RUB", 10, 10)
 
-        assert expectedBank == cashBank.getBank()
+        assertThat(expectedBank, is(cashBank.getBank()))
     }
 
     @Test
@@ -205,7 +207,7 @@ class TestCashBankTreeMap {
         putInExpectedBankExistingCurrency(10, 1)
         putInExpectedBankExistingCurrency(50, 1)
 
-        assert expectedBank == cashBank.getBank()
+        assertThat(expectedBank, is(cashBank.getBank()))
     }
 
     @Test
@@ -215,7 +217,7 @@ class TestCashBankTreeMap {
 
         putInExpectedBankNewCurrency("USD", 1, 1)
 
-        assert expectedBank == cashBank.getBank()
+        assertThat(expectedBank, is(cashBank.getBank()))
     }
 
     @Test
@@ -229,7 +231,7 @@ class TestCashBankTreeMap {
         putInExpectedBankExistingCurrency(10, 5)
         putInExpectedBankExistingCurrency(1, 5)
 
-        assert expectedBank == cashBank.getBank()
+        assertThat(expectedBank, is(cashBank.getBank()))
     }
 
     @Test
@@ -239,7 +241,7 @@ class TestCashBankTreeMap {
 
         putInExpectedBankNewCurrency("USD", 50, 1)
 
-        assert expectedBank == cashBank.getBank()
+        assertThat(expectedBank, is(cashBank.getBank()))
     }
 
     @Test
@@ -251,7 +253,7 @@ class TestCashBankTreeMap {
         putInExpectedBankNewCurrency("USD", 100, 5)
         putInExpectedBankExistingCurrency(10, 5)
 
-        assert expectedBank == cashBank.getBank()
+        assertThat(expectedBank, is(cashBank.getBank()))
     }
 
     @Test
@@ -262,8 +264,7 @@ class TestCashBankTreeMap {
 
         putInExpectedBankNewCurrency("USD", 10, 10)
 
-        assert expectedBank == cashBank.getBank()
-
+        assertThat(expectedBank, is(cashBank.getBank()))
     }
 
     void putInExpectedBankNewCurrency(String currency, Integer value, Integer number) {

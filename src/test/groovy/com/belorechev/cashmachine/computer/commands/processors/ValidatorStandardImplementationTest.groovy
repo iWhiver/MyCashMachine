@@ -5,6 +5,9 @@ import com.belorechev.cashmachine.computer.processors.ValidatorStandardImplement
 import org.junit.BeforeClass
 import org.junit.Test
 
+import static org.hamcrest.CoreMatchers.is
+import static org.junit.Assert.assertThat
+
 class ValidatorStandardImplementationTest {
 
     private static Validator validator
@@ -18,35 +21,34 @@ class ValidatorStandardImplementationTest {
     void shouldReturnFalse_IfArrayLengthEqualsExpectedAmountOfArguments() {
 
         int length = 4
-        assert !validator.isInvalidAmountOfArguments(new String[length], length)
+        assertThat(validator.isInvalidAmountOfArguments(new String[length], length), is(false))
     }
 
     @Test
     void shouldReturnTrue_IfArrayLengthEqualsToExpectedAmountOfArguments() {
 
         int length = 3
-        assert validator.isInvalidAmountOfArguments(new String[length], length + 1)
+        assertThat(validator.isInvalidAmountOfArguments(new String[length], length + 1), is(true))
     }
 
     @Test(expected = IllegalArgumentException.class)
     void shouldThrowException_IfArrayIsNull() {
-
         validator.isInvalidAmountOfArguments(null, 1)
     }
 
     @Test
     void shouldReturnTrue_ForPositiveValue() {
-        assert validator.isPositive(10)
+        assertThat(validator.isPositive(10), is(true))
     }
 
     @Test
     void shouldReturnFalse_ForNegativeValue() {
-        assert !validator.isPositive(-10)
+        assertThat(validator.isPositive(-10), is(false))
     }
 
     @Test
     void shouldReturnFalse_ForZero() {
-        assert !validator.isPositive(0)
+        assertThat(validator.isPositive(0), is(false))
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -56,63 +58,62 @@ class ValidatorStandardImplementationTest {
 
     @Test
     void shouldReturnTrue_ForThreeUppercaseLettersRussianLanguageCurrency() {
-        assert validator.isValidCurrency("РУБ")
+        assertThat(validator.isValidCurrency("РУБ"), is(true))
     }
 
     @Test
     void shouldReturnTrue_ForThreeUppercaseLettersEnglishLanguageCurrency() {
-        assert validator.isValidCurrency("RUB")
+        assertThat(validator.isValidCurrency("RUB"), is(true))
     }
 
     @Test(expected = IllegalArgumentException.class)
     void shouldThrowException_ForNullCurrency() {
-
         validator.isValidCurrency(null)
     }
 
     @Test
     void shouldReturnFalse_ForDigits() {
-        assert !validator.isValidCurrency("101")
+        assertThat(validator.isValidCurrency("101"), is(false))
     }
 
     @Test
     void shouldReturnFalse_ForSymbols() {
-        assert !validator.isValidCurrency("*/+")
+        assertThat(validator.isValidCurrency("*/+"), is(false))
     }
 
     @Test
     void shouldReturnFalse_ForSymbolAndLetters() {
-        assert !validator.isValidCurrency("US+")
+        assertThat(validator.isValidCurrency("US+"), is(false))
     }
 
     @Test
     void shouldReturnFalse_ForSymbolAndDigits() {
-        assert !validator.isValidCurrency("1.0")
+        assertThat(validator.isValidCurrency("1.0+"), is(false))
     }
 
     @Test
     void shouldReturnFalse_ForDigitAndLetters() {
-        assert !validator.isValidCurrency("US0")
+        assertThat(validator.isValidCurrency("US0"), is(false))
     }
 
     @Test
     void shouldReturnFalse_ForUppercaseLettersFromRussianAndEnglishLanguages() {
-        assert !validator.isValidCurrency("USД")
+        assertThat(validator.isValidCurrency("USД"), is(false))
     }
 
     @Test
     void shouldReturnFalse_ForTwoUppercaseLettersEnglishLanguageCurrency() {
-        assert !validator.isValidCurrency("US")
+        assertThat(validator.isValidCurrency("US"), is(false))
     }
 
     @Test
     void shouldReturnFalse_ForTwoUppercaseLettersRussianLanguageCurrency() {
-        assert !validator.isValidCurrency("РУ")
+        assertThat(validator.isValidCurrency("РУ"), is(false))
     }
 
     @Test
     void shouldReturnFalse_ForEmptyString() {
-        assert !validator.isValidCurrency("")
+        assertThat(validator.isValidCurrency(""), is(false))
     }
 
     @Test(expected = IllegalArgumentException.class)

@@ -7,6 +7,9 @@ import org.junit.BeforeClass
 import org.junit.Test
 import org.mockito.Mockito
 
+import static org.hamcrest.CoreMatchers.is
+import static org.junit.Assert.assertThat
+
 class ConverterStandardImplementationTest {
 
     private static Cash cashMock
@@ -61,7 +64,7 @@ class ConverterStandardImplementationTest {
         String actual = converter.convertSetOfCashToString(
                 setOfCashMocks, "", true, false, false)
 
-        assert "USD" == actual
+        assertThat(actual, is("USD"))
     }
 
     @Test
@@ -70,7 +73,7 @@ class ConverterStandardImplementationTest {
         String actual = converter.convertSetOfCashToString(
                 setOfCashMocks, "", false, true, false)
 
-        assert "100" == actual
+        assertThat(actual, is("100"))
     }
 
     @Test
@@ -79,7 +82,7 @@ class ConverterStandardImplementationTest {
         String actual = converter.convertSetOfCashToString(
                 setOfCashMocks, "", false, false, true)
 
-        assert "1" == actual
+        assertThat(actual, is("1"))
     }
 
     @Test
@@ -88,7 +91,7 @@ class ConverterStandardImplementationTest {
         String actual = converter.convertSetOfCashToString(
                 setOfCashMocks, "", true, true, false)
 
-        assert "USD 100" == actual
+        assertThat(actual, is("USD 100"))
     }
 
     @Test
@@ -97,7 +100,7 @@ class ConverterStandardImplementationTest {
         String actual = converter.convertSetOfCashToString(
                 setOfCashMocks, "", true, false, true)
 
-        assert "USD 1" == actual
+        assertThat(actual, is("USD 1"))
     }
 
     @Test
@@ -106,7 +109,7 @@ class ConverterStandardImplementationTest {
         String actual = converter.convertSetOfCashToString(
                 setOfCashMocks, "", false, true, true)
 
-        assert "100 1" == actual
+        assertThat(actual, is("100 1"))
     }
 
     @Test
@@ -115,7 +118,7 @@ class ConverterStandardImplementationTest {
         String actual = converter.convertSetOfCashToString(
                 setOfCashMocks, "", true, true, true)
 
-        assert "USD 100 1" == actual
+        assertThat(actual, is("USD 100 1"))
     }
 
     @Test
@@ -142,7 +145,7 @@ class ConverterStandardImplementationTest {
         String actual = converter.convertSetOfCashToString(
                 newSetOfCashMocks, "|", true, true, true)
 
-        assert "USD 100 1|RUB 5 10|" == actual
+        assertThat(actual, is("USD 100 1|RUB 5 10|"))
     }
 
 }

@@ -12,8 +12,6 @@ import static org.junit.Assert.assertThat
 import static org.mockito.Mockito.verify
 import static org.mockito.Mockito.when
 
-//TODO check mock CashBank
-
 class CommandAddNotesTest {
 
     private final CashBank cashBankMock = Mockito.mock(CashBank.class)
@@ -25,7 +23,6 @@ class CommandAddNotesTest {
 
     @Test
     void shouldReturnTrue_ForIdentificationOfClass() {
-
         assertThat(commandAddNotes.isSuited(identification), is(true))
     }
 
@@ -37,7 +34,7 @@ class CommandAddNotesTest {
     }
 
     @Test
-    void shouldReturnOkStatus_ForSuitedCommand_AndInvokeAllMethodsForValidation() {
+    void shouldReturnOkStatus_ForSuitedCommand_AndInvokeAllMethodsForValidation_AndInvokeMethodFromCashBank() {
 
         String[] operation = [identification, "USD", "10", "10"]
 
@@ -52,6 +49,8 @@ class CommandAddNotesTest {
         verify(validatorMock).isValidCurrency(operation[1])
         verify(validatorMock).isValidValue(operation[2] as Integer)
         verify(validatorMock).isPositive(operation[3] as Integer)
+
+        verify(cashBankMock).add(operation[1], operation[2] as Integer, operation[3] as Integer)
     }
 
     @Test
@@ -60,9 +59,7 @@ class CommandAddNotesTest {
         String[] operation = [identification]
 
         when(validatorMock.isInvalidAmountOfArguments(operation as String[], expectedAmountOfArguments)).thenReturn(true)
-
         assertThat(commandAddNotes.apply(operation), is(ERROR_STATUS))
-
         verify(validatorMock).isInvalidAmountOfArguments(operation as String[], expectedAmountOfArguments)
     }
 
@@ -121,9 +118,7 @@ class CommandAddNotesTest {
         String[] operation = [identification, "USD", "USD", "10"]
 
         when(validatorMock.isInvalidAmountOfArguments(operation, expectedAmountOfArguments)).thenReturn(false)
-
         assertThat(commandAddNotes.apply(operation), is(ERROR_STATUS))
-
         verify(validatorMock).isInvalidAmountOfArguments(operation, expectedAmountOfArguments)
     }
 
@@ -133,9 +128,7 @@ class CommandAddNotesTest {
         String[] operation = [identification, "USD", "100", "USD"]
 
         when(validatorMock.isInvalidAmountOfArguments(operation, expectedAmountOfArguments)).thenReturn(false)
-
         assertThat(commandAddNotes.apply(operation), is(ERROR_STATUS))
-
         verify(validatorMock).isInvalidAmountOfArguments(operation, expectedAmountOfArguments)
     }
 }

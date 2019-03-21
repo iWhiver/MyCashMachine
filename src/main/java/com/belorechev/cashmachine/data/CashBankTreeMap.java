@@ -131,7 +131,6 @@ public class CashBankTreeMap implements CashBank {
     }
 
     Map<String, Map<Integer, Integer>> getBank() {
-
         return bank;
     }
 

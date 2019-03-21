@@ -2,6 +2,9 @@ package com.belorechev.cashmachine.computer.commands
 
 import org.junit.Test
 
+import static org.hamcrest.CoreMatchers.is
+import static org.junit.Assert.assertThat
+
 class CommandTemplateTest {
 
     private final String identificationString = "ForTest"
@@ -47,15 +50,11 @@ class CommandTemplateTest {
 
     @Test
     void shouldReturnTrue_IfIdentificationIsSuited() {
-
-        assert commandTemplateForTest.isSuited(identificationString)
+        assertThat(commandTemplateForTest.isSuited(identificationString), is(true))
     }
 
     @Test
     void shouldReturnFalse_IfIdentificationNotSuited() {
-
-        assert !commandTemplateForTest.isSuited("")
+        assertThat(commandTemplateForTest.isSuited(""), is(false))
     }
-
-
 }

@@ -8,6 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit4.SpringRunner
 
 import static com.belorechev.cashmachine.utility.Dictionary.NEW_LINE
+import static org.hamcrest.CoreMatchers.is
+import static org.junit.Assert.assertThat
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -53,11 +55,10 @@ class FunctionalTests {
                 "CHF 10 50${NEW_LINE}CHF 100 1${NEW_LINE}USD 10 48${NEW_LINE}USD 100 29${NEW_LINE}OK"
         ]
 
-        assert expectedOutputs.length == commands.length
+        assertThat(expectedOutputs.length, is(commands.length))
 
         for (i in 0..<commands.length) {
-
-            assert expectedOutputs[i] == computer.calculate(commands[i])
+            assertThat(expectedOutputs[i], is(computer.calculate(commands[i])))
         }
     }
 }

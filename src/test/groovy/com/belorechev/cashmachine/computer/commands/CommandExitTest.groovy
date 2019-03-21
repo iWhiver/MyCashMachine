@@ -3,6 +3,8 @@ package com.belorechev.cashmachine.computer.commands
 import org.junit.Test
 
 import static com.belorechev.cashmachine.utility.Dictionary.EXIT_STATUS
+import static org.hamcrest.CoreMatchers.is
+import static org.junit.Assert.assertThat
 
 class CommandExitTest {
 
@@ -11,32 +13,28 @@ class CommandExitTest {
 
     @Test
     void shouldReturnTrue_ForUpperCaseIdentificationOfClass() {
-
-        assert commandExit.isSuited(identification.toUpperCase())
+        assertThat(commandExit.isSuited(identification.toUpperCase()), is(true))
     }
 
     @Test
     void shouldReturnTrue_ForLowerCaseIdentificationOfClass() {
-
-        assert commandExit.isSuited(identification)
+        assertThat(commandExit.isSuited(identification), is(true))
     }
 
     @Test(expected = IllegalStateException.class)
     void shouldThrowException_IfClassNotChangeValueOfIdentification() {
 
         commandExit.identification = null
-        assert commandExit.isSuited(identification)
+        commandExit.isSuited(identification)
     }
 
     @Test
     void shouldReturnExitStatus_ForUpperCaseIdentification() {
-
-        assert EXIT_STATUS == commandExit.apply(identification.toUpperCase())
+        assertThat(commandExit.apply(identification.toUpperCase()), is(EXIT_STATUS))
     }
 
     @Test
     void shouldReturnExitStatus_ForLowerCaseIdentification() {
-
-        assert EXIT_STATUS == commandExit.apply(identification)
+        assertThat(commandExit.apply(identification), is(EXIT_STATUS))
     }
 }
