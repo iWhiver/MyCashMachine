@@ -1,23 +1,24 @@
 package com.belorechev.cashmachine.computer.commands.processors
 
 import com.belorechev.cashmachine.computer.processors.Converter
+import com.belorechev.cashmachine.computer.processors.ConverterStandardImplementation
 import com.belorechev.cashmachine.data.Cash
 import org.junit.BeforeClass
 import org.junit.Test
 import org.mockito.Mockito
 
-//TODO Change as interface implementation
-
-class ConverterTest {
+class ConverterStandardImplementationTest {
 
     private static Cash cashMock
     private static Set setOfCashMocks
+    private static Converter converter
 
     @BeforeClass
     static void setUp() {
 
         cashMock = Mockito.mock(Cash.class)
         setOfCashMocks = new TreeSet()
+        converter = new ConverterStandardImplementation()
 
         Mockito.when(cashMock.getCurrency()).thenReturn("USD")
         Mockito.when(cashMock.getValue()).thenReturn(100)
@@ -29,35 +30,35 @@ class ConverterTest {
     @Test(expected = IllegalArgumentException.class)
     void shouldThrowException_IfThreeFlagsAreFalse() {
 
-        Converter.convertSetOfCashToString(
+        converter.convertSetOfCashToString(
                 setOfCashMocks, "", false, false, false)
     }
 
     @Test(expected = IllegalArgumentException.class)
     void shouldThrowException_IfLineSeparatorIsNull() {
 
-        Converter.convertSetOfCashToString(
+        converter.convertSetOfCashToString(
                 setOfCashMocks, null, true, true, true)
     }
 
     @Test(expected = IllegalArgumentException.class)
     void shouldThrowException_IfCashSetIsNull() {
 
-        Converter.convertSetOfCashToString(
+        converter.convertSetOfCashToString(
                 null, "", true, true, true)
     }
 
     @Test(expected = IllegalArgumentException.class)
     void shouldThrowException_IfCashSetIsEmpty() {
 
-        Converter.convertSetOfCashToString(
+        converter.convertSetOfCashToString(
                 new TreeSet<Cash>(), "", true, true, true)
     }
 
     @Test
     void shouldWorkWell_ForUsingOnlyFlag_UseCurrency() {
 
-        String actual = Converter.convertSetOfCashToString(
+        String actual = converter.convertSetOfCashToString(
                 setOfCashMocks, "", true, false, false)
 
         assert "USD" == actual
@@ -66,7 +67,7 @@ class ConverterTest {
     @Test
     void shouldWorkWell_ForUsingOnlyFlag_UseValue() {
 
-        String actual = Converter.convertSetOfCashToString(
+        String actual = converter.convertSetOfCashToString(
                 setOfCashMocks, "", false, true, false)
 
         assert "100" == actual
@@ -75,7 +76,7 @@ class ConverterTest {
     @Test
     void shouldWorkWell_ForUsingOnlyFlag_UseAmountOfNotes() {
 
-        String actual = Converter.convertSetOfCashToString(
+        String actual = converter.convertSetOfCashToString(
                 setOfCashMocks, "", false, false, true)
 
         assert "1" == actual
@@ -84,7 +85,7 @@ class ConverterTest {
     @Test
     void shouldWorkWell_ForUsingOnlyFlags_UseCurrency_UseValue() {
 
-        String actual = Converter.convertSetOfCashToString(
+        String actual = converter.convertSetOfCashToString(
                 setOfCashMocks, "", true, true, false)
 
         assert "USD 100" == actual
@@ -93,7 +94,7 @@ class ConverterTest {
     @Test
     void shouldWorkWell_ForUsingOnlyFlags_UseCurrency_UseAmountOfNotes() {
 
-        String actual = Converter.convertSetOfCashToString(
+        String actual = converter.convertSetOfCashToString(
                 setOfCashMocks, "", true, false, true)
 
         assert "USD 1" == actual
@@ -102,7 +103,7 @@ class ConverterTest {
     @Test
     void shouldWorkWell_ForUsingOnlyFlags_UseValue_UseAmountOfNotes() {
 
-        String actual = Converter.convertSetOfCashToString(
+        String actual = converter.convertSetOfCashToString(
                 setOfCashMocks, "", false, true, true)
 
         assert "100 1" == actual
@@ -111,7 +112,7 @@ class ConverterTest {
     @Test
     void shouldWorkWell_ForUsingAllFlags() {
 
-        String actual = Converter.convertSetOfCashToString(
+        String actual = converter.convertSetOfCashToString(
                 setOfCashMocks, "", true, true, true)
 
         assert "USD 100 1" == actual
@@ -138,7 +139,7 @@ class ConverterTest {
 
         newSetOfCashMocks << secondCashMock
 
-        String actual = Converter.convertSetOfCashToString(
+        String actual = converter.convertSetOfCashToString(
                 newSetOfCashMocks, "|", true, true, true)
 
         assert "USD 100 1|RUB 5 10|" == actual

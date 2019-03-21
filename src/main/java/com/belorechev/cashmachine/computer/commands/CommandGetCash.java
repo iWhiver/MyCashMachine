@@ -1,6 +1,7 @@
 package com.belorechev.cashmachine.computer.commands;
 
 import com.belorechev.cashmachine.computer.processors.Converter;
+import com.belorechev.cashmachine.computer.processors.ConverterStandardImplementation;
 import com.belorechev.cashmachine.computer.processors.Validator;
 import com.belorechev.cashmachine.data.Cash;
 import com.belorechev.cashmachine.data.CashBank;
@@ -13,11 +14,13 @@ public class CommandGetCash extends CommandTemplate {
 
     private final CashBank cashBank;
     private final Validator validator;
+    private final Converter converter;
 
     public CommandGetCash(CashBank cashBank, Validator validator) {
 
         this.cashBank = cashBank;
         this.validator = validator;
+        converter = new ConverterStandardImplementation();
         identification = "-";
     }
 
@@ -45,7 +48,7 @@ public class CommandGetCash extends CommandTemplate {
 
             if (!usedBanknotesForOperation.isEmpty()) {
 
-                String stringRepresentationOfBanknotes = Converter.
+                String stringRepresentationOfBanknotes = converter.
                         convertSetOfCashToString(usedBanknotesForOperation, NEW_LINE, false, true, true);
 
                 return stringRepresentationOfBanknotes + OK_STATUS;
