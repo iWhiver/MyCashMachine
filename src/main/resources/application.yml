@@ -1,14 +1,6 @@
-logging:
-  level:
-    .: error
-    org.springframework: ERROR
-    com.belorechev: ERROR
-
 spring:
   profiles:
     active: "dev"
-  main:
-    banner-mode: "off"
 
 my:
   VALID_BANKNOTES:
@@ -24,9 +16,22 @@ my:
 ---
 
 spring:
-  profiles: dev
+  profiles: prod
 
 ---
 
 spring:
-  profiles: prod
+  profiles: test
+
+---
+
+spring:
+  profiles: dev
+  main:
+    banner-mode: "off"
+
+logging:
+  level:
+    .: error
+    org.springframework: ERROR
+    com.belorechev: ERROR

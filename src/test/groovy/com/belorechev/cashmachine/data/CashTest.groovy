@@ -82,7 +82,7 @@ class CashTest {
         Cash firstCash = new Cash("USD", 100, 10)
         Cash secondCash = new Cash("RUB", 5, 1)
 
-        assertThat(firstCash.compareTo(secondCash), is(firstCash.getCurrency().compareTo(secondCash.getCurrency())))
+        assertThat(firstCash <=> secondCash, is(firstCash.getCurrency() <=> secondCash.getCurrency()))
     }
 
     @Test
@@ -91,7 +91,7 @@ class CashTest {
         Cash firstCash = new Cash("USD", 100, 10)
         Cash secondCash = new Cash("USD", 5, 1)
 
-        assertThat(firstCash.compareTo(secondCash), is(firstCash.getValue().compareTo(secondCash.getValue())))
+        assertThat(firstCash <=> secondCash, is(firstCash.getValue() <=> secondCash.getValue()))
     }
 
     @Test
@@ -100,6 +100,6 @@ class CashTest {
         Cash firstCash = new Cash("USD", 100, 1)
         Cash secondCash = new Cash("USD", 100, 10)
 
-        assertThat(firstCash.compareTo(secondCash), is(firstCash.getAmountOfNotes().compareTo(secondCash.getAmountOfNotes())))
+        assertThat(firstCash <=> secondCash, is(firstCash.getAmountOfNotes() <=> secondCash.getAmountOfNotes()))
     }
 }
