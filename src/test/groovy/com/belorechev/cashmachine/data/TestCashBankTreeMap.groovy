@@ -9,7 +9,6 @@ import static org.junit.Assert.assertThat
 class TestCashBankTreeMap {
 
     protected CashBankTreeMap cashBank
-
     protected Map<String, Map<Integer, Integer>> expectedBank
     protected Map<Integer, Integer> banknotesOfCurrency
 
@@ -60,7 +59,6 @@ class TestCashBankTreeMap {
         cashBank.add("USD", 10, 10)
         cashBank.add("USD", 100, 5)
         cashBank.add("USD", 100, 10)
-
 
         putInExpectedBankNewCurrency("USD", 10, 10 + 5)
         putInExpectedBankExistingCurrency(100, 10 + 5)
@@ -121,7 +119,6 @@ class TestCashBankTreeMap {
 
         assertThat(expectedBank, is(cashBank.getBank()))
     }
-
 
     @Test
     void getLastValue_AnotherValueNotLast2() {
@@ -268,14 +265,12 @@ class TestCashBankTreeMap {
     }
 
     void putInExpectedBankNewCurrency(String currency, Integer value, Integer number) {
-
         banknotesOfCurrency = new TreeMap<>()
         banknotesOfCurrency[value] = number
         expectedBank[currency] = banknotesOfCurrency
     }
 
     void putInExpectedBankExistingCurrency(Integer value, Integer number) {
-
         banknotesOfCurrency[value] = number
     }
 

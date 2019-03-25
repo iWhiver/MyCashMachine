@@ -14,9 +14,7 @@ import javax.annotation.PostConstruct
 class LifeCircle {
 
     private final CommandInput commandInput
-
     private final MessageOutput outputCom
-
     private final Computer computer
 
     @Autowired
@@ -36,13 +34,15 @@ class LifeCircle {
 
         int flagAntiHang = 0
 
-        while (true) {
+        while (++flagAntiHang < 1000) {
             String command = commandInput.getNext()
             String output = computer.calculate(command)
             outputCom.printMessage(output)
 
-            if (output == Dictionary.EXIT_STATUS || ++flagAntiHang > 1000) {
+            if (output == Dictionary.EXIT_STATUS) {
                 break
+            } else {
+                flagAntiHang = 0
             }
         }
     }

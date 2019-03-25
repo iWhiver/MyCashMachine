@@ -10,13 +10,11 @@ class CommandInputByConsole implements CommandInput {
     private final BufferedReader br
 
     CommandInputByConsole() {
-
         br = new BufferedReader(new InputStreamReader(System.in))
     }
 
     @Override
     String getNext() throws IOException {
-
         return br.readLine()
     }
 }

@@ -10,7 +10,6 @@ class CommandPrintCash extends CommandTemplate {
     private final Validator validator
 
     CommandPrintCash(CashBank cashBank, Validator validator) {
-
         this.cashBank = cashBank
         this.validator = validator
         identification = "?"
@@ -23,7 +22,6 @@ class CommandPrintCash extends CommandTemplate {
             return Dictionary.ERROR_STATUS
         }
 
-        String extraStatus = cashBank.getPrintForm()
-        return extraStatus + Dictionary.OK_STATUS
+        return cashBank.getPrintForm() + Dictionary.OK_STATUS
     }
 }

@@ -2,5 +2,5 @@ package com.belorechev.cashmachine.input_output
 
 interface MessageOutput {
 
-    void printMessage(String output);
+    void printMessage(String output)
 }

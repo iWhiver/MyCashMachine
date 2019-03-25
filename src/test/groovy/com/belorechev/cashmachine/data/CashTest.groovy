@@ -12,17 +12,17 @@ class CashTest {
 
     @Test
     void shouldWellWork_ForGetCurrency() {
-        assertThat(cashForTestingGetters.getCurrency(), is("USD"))
+        assertThat(cashForTestingGetters.currency, is("USD"))
     }
 
     @Test
     void shouldWellWork_ForGetValue() {
-        assertThat(cashForTestingGetters.getValue(), is(100))
+        assertThat(cashForTestingGetters.value, is(100))
     }
 
     @Test
     void shouldWellWork_ForGetAmountOfNotes() {
-        assertThat(cashForTestingGetters.getAmountOfNotes(), is(10))
+        assertThat(cashForTestingGetters.amountOfNotes, is(10))
     }
 
     @Test
@@ -31,7 +31,7 @@ class CashTest {
     }
 
     @Test
-    void shouldReturnFalse_ForEqualMethodForObjectNotCash() {
+    void shouldReturnFalse_ForEqualMethodForNotCashObject() {
         assertThat(cashForTestingGetters, is(not(new Object())))
     }
 

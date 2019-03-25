@@ -27,7 +27,6 @@ final class Dictionary {
     }
 
     void setValidBanknotes(List<Integer> banknotesFromYML) {
-
         if (canChangeProperties) {
             tempList.addAll(banknotesFromYML)
             canChangeProperties = false
@@ -35,7 +34,6 @@ final class Dictionary {
     }
 
     private Dictionary() {
-
         if (!canChangeProperties) {
             throw new IllegalStateException("Utility class")
         }

@@ -2,7 +2,9 @@ package com.belorechev.cashmachine.computer.commands
 
 import com.belorechev.cashmachine.computer.processors.Validator
 import com.belorechev.cashmachine.data.CashBank
-import com.belorechev.cashmachine.utility.Dictionary
+
+import static com.belorechev.cashmachine.utility.Dictionary.ERROR_STATUS
+import static com.belorechev.cashmachine.utility.Dictionary.OK_STATUS
 
 class CommandAddNotes extends CommandTemplate {
 
@@ -10,7 +12,6 @@ class CommandAddNotes extends CommandTemplate {
     private final Validator validator
 
     CommandAddNotes(CashBank cashBank, Validator validator) {
-
         this.cashBank = cashBank
         this.validator = validator
         identification = "+"
@@ -20,7 +21,7 @@ class CommandAddNotes extends CommandTemplate {
     String apply(String[] operation) {
 
         if (validator.isInvalidAmountOfArguments(operation, 4)) {
-            return Dictionary.ERROR_STATUS
+            return ERROR_STATUS
         }
 
         String currency = operation[1]
@@ -29,20 +30,20 @@ class CommandAddNotes extends CommandTemplate {
         Integer number
 
         try {
-            value = Integer.parseInt(operation[2])
-            number = Integer.parseInt(operation[3])
+            value = Integer.parseInt operation[2]
+            number = Integer.parseInt operation[3]
         } catch (NumberFormatException e) {
-            print e.stackTrace
-            return Dictionary.ERROR_STATUS
+            println e.stackTrace
+            return ERROR_STATUS
         }
 
         boolean isValid = validator.isValidCurrency(currency) && validator.isValidValue(value) && validator.isPositive(number)
 
         if (isValid) {
             cashBank.add(currency, value, number)
-            return Dictionary.OK_STATUS
+            return OK_STATUS
         }
 
-        return Dictionary.ERROR_STATUS
+        return ERROR_STATUS
     }
 }

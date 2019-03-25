@@ -64,9 +64,7 @@ class CommandGetCashTest {
         String[] operation = [identification]
 
         when(validatorMock.isInvalidAmountOfArguments(operation, expectedAmountOfArguments)).thenReturn(true)
-
         assertThat(commandGetCash.apply(operation), is(ERROR_STATUS))
-
         verify(validatorMock).isInvalidAmountOfArguments(operation, expectedAmountOfArguments)
     }
 
@@ -76,9 +74,7 @@ class CommandGetCashTest {
         String[] operation = [identification, "USD", "USD"]
 
         when(validatorMock.isInvalidAmountOfArguments(operation, expectedAmountOfArguments)).thenReturn(false)
-
         assertThat(commandGetCash.apply(operation), is(ERROR_STATUS))
-
         verify(validatorMock).isInvalidAmountOfArguments(operation, expectedAmountOfArguments)
     }
 

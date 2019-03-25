@@ -55,9 +55,9 @@ class FunctionalTests {
                 "CHF 10 50${NEW_LINE}CHF 100 1${NEW_LINE}USD 10 48${NEW_LINE}USD 100 29${NEW_LINE}OK"
         ]
 
-        assertThat(expectedOutputs.length, is(commands.length))
+        assertThat(expectedOutputs.size(), is(commands.size()))
 
-        for (i in 0..<commands.length) {
+        for (i in 0..<commands.size()) {
             assertThat(expectedOutputs[i], is(computer.calculate(commands[i])))
         }
     }

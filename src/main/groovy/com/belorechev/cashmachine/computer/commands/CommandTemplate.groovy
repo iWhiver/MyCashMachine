@@ -10,7 +10,7 @@ abstract class CommandTemplate {
             throw new IllegalStateException("Subclass must change value of variable \"identification\"")
         }
 
-        if (operation != null && operation.length != 0 && operation[0] != null) {
+        if (operation && operation[0] != null) {
             return operation[0] == identification || operation[0] == identification.toUpperCase()
         }
 

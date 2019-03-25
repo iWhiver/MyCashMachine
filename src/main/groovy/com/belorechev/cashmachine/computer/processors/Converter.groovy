@@ -4,5 +4,5 @@ import com.belorechev.cashmachine.data.Cash
 
 interface Converter {
 
-    String convertSetOfCashToString(Set<Cash> cashSet, String lineSeparator, boolean useCurrency, boolean useValue, boolean useAmountOfNotes);
+    String convertSetOfCashToString(Set<Cash> cashSet, String lineSeparator, boolean useCurrency, boolean useValue, boolean useAmountOfNotes)
 }

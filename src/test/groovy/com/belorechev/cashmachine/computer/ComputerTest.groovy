@@ -7,7 +7,6 @@ import org.junit.Test
 import org.mockito.Mockito
 
 import static com.belorechev.cashmachine.utility.Dictionary.*
-import static org.hamcrest.CoreMatchers.either
 import static org.hamcrest.CoreMatchers.is
 import static org.junit.Assert.assertThat
 import static org.mockito.Mockito.verify
@@ -89,7 +88,7 @@ class ComputerTest {
         when(validatorMock.isValidCurrency(operation[1])).thenReturn(true)
         when(validatorMock.isPositive(operation[2] as Integer)).thenReturn(true)
 
-        assertThat(computer.calculate(operation.join(" ")), either(is("0 0" + NEW_LINE + OK_STATUS)) | is("0 0" + OK_STATUS))
+        assertThat(computer.calculate(operation.join(" ")), is("0 0" + NEW_LINE + OK_STATUS))
 
         verify(validatorMock).isInvalidAmountOfArguments(operation, expectedAmountOfArguments)
         verify(validatorMock).isValidCurrency(operation[1])

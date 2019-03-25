@@ -8,57 +8,56 @@ class ConverterStandardImplementation implements Converter {
     String convertSetOfCashToString(Set<Cash> cashSet, String lineSeparator, boolean useCurrency, boolean useValue, boolean useAmountOfNotes) {
 
         checkValues(cashSet, lineSeparator, useCurrency, useValue, useAmountOfNotes)
-
         StringBuilder cashSetAsString = new StringBuilder()
 
-        for (Cash cashForOperation : cashSet) {
+        cashSet.each {
 
             boolean addedVariableEarlier = false
 
             if (useCurrency) {
-
-                cashSetAsString.append(cashForOperation.getCurrency())
+                cashSetAsString << it.getCurrency()
                 addedVariableEarlier = true
             }
 
             if (useValue) {
-
                 if (addedVariableEarlier) {
-                    cashSetAsString.append(" ")
+                    cashSetAsString << " "
                 }
 
-                cashSetAsString.append(cashForOperation.getValue())
+                cashSetAsString << it.getValue()
                 addedVariableEarlier = true
             }
 
             if (useAmountOfNotes) {
-
                 if (addedVariableEarlier) {
-                    cashSetAsString.append(" ")
+                    cashSetAsString << " "
                 }
 
-                cashSetAsString.append(cashForOperation.getAmountOfNotes())
+                cashSetAsString << it.getAmountOfNotes()
             }
 
-            cashSetAsString.append(lineSeparator)
+            cashSetAsString << lineSeparator
         }
 
-        return cashSetAsString.toString()
+        return cashSetAsString
     }
 
     private static void checkValues(Set<Cash> cashSet, String lineSeparator, boolean useCurrency, boolean useValue, boolean useAmountOfNotes) {
 
-        if (!(useCurrency || useValue || useAmountOfNotes))
+        if (!(useCurrency || useValue || useAmountOfNotes)) {
             throw new IllegalArgumentException("You must convert at least one variable of Cash class")
+        }
 
-        if (lineSeparator == null)
+        if (lineSeparator == null) {
             throw new IllegalArgumentException("You must define not null lineSeparator")
+        }
 
-        if (cashSet == null)
+        if (cashSet == null) {
             throw new IllegalArgumentException("You must define not null Set of Cash")
+        }
 
-        if (cashSet.isEmpty())
+        if (cashSet.isEmpty()) {
             throw new IllegalArgumentException("You must define not empty Set of Cash")
-
+        }
     }
 }

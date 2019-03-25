@@ -55,6 +55,4 @@ class CommandPrintCashTest {
         verify(validatorMock).isInvalidAmountOfArguments(operation, expectedAmountOfArguments)
         verify(cashBankMock).getPrintForm()
     }
-
-
 }

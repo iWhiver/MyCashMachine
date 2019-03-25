@@ -13,7 +13,7 @@ final class ValidatorStandardImplementation implements Validator {
             throw new IllegalArgumentException("Array of operation must be not null")
         }
 
-        return operation.length != expectedAmountOfArguments
+        return operation.size() != expectedAmountOfArguments
     }
 
     @Override
@@ -23,8 +23,7 @@ final class ValidatorStandardImplementation implements Validator {
             throw new IllegalArgumentException()
         }
 
-        if (currency.length() == MAX_AMOUNT_LETTERS_CURRENCY) {
-
+        if (currency.size() == MAX_AMOUNT_LETTERS_CURRENCY) {
             return isValidRussianCurrency(currency) || isValidEnglishCurrency(currency)
         }
         return false
@@ -32,10 +31,9 @@ final class ValidatorStandardImplementation implements Validator {
 
     private static boolean isValidRussianCurrency(String currency) {
 
-        for (int i = 0; i < MAX_AMOUNT_LETTERS_CURRENCY; i++) {
-
-            String symbol = currency.charAt(i)
-            if (!('А' <= symbol && symbol <= 'Я')) {
+        for (int i in 0..<MAX_AMOUNT_LETTERS_CURRENCY) {
+            def range = 'А'..'Я'
+            if (!(range.contains(currency[i]))) {
                 return false
             }
         }
@@ -44,10 +42,9 @@ final class ValidatorStandardImplementation implements Validator {
 
     private static boolean isValidEnglishCurrency(String currency) {
 
-        for (int i = 0; i < MAX_AMOUNT_LETTERS_CURRENCY; i++) {
-
-            String symbol = currency.charAt(i)
-            if (!('A' <= symbol && symbol <= 'Z')) {
+        for (int i in 0..<MAX_AMOUNT_LETTERS_CURRENCY) {
+            def range = 'A'..'Z'
+            if (!(range.contains(currency[i]))) {
                 return false
             }
         }
@@ -57,18 +54,17 @@ final class ValidatorStandardImplementation implements Validator {
     @Override
     boolean isValidValue(Integer value) {
 
-        if (value == null)
+        if (value == null) {
             throw new IllegalArgumentException()
+        }
 
-        for (Integer validValue : Dictionary.getValidBanknotes()) {
+        for (Integer validValue in Dictionary.getValidBanknotes()) {
             if (value == validValue) {
                 return true
             }
         }
-
         return false
     }
-
 
     @Override
     boolean isPositive(Integer number) {
@@ -76,7 +72,6 @@ final class ValidatorStandardImplementation implements Validator {
         if (number == null) {
             throw new IllegalArgumentException()
         }
-
         return number > 0
     }
 }

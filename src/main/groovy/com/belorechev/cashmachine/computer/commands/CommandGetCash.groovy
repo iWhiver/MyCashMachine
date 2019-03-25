@@ -15,7 +15,6 @@ class CommandGetCash extends CommandTemplate {
     private final Converter converter
 
     CommandGetCash(CashBank cashBank, Validator validator) {
-
         this.cashBank = cashBank
         this.validator = validator
         converter = new ConverterStandardImplementation()
@@ -32,9 +31,9 @@ class CommandGetCash extends CommandTemplate {
         int amount
 
         try {
-            amount = Integer.parseInt(operation[2])
+            amount = Integer.parseInt operation[2]
         } catch (NumberFormatException e) {
-            print e.stackTrace
+            println e.stackTrace
             return ERROR_STATUS
         }
 

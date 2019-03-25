@@ -14,6 +14,6 @@ class MessageOutputByConsole implements MessageOutput {
             throw new IllegalArgumentException()
         }
 
-        System.out.println(output)
+        println output
     }
 }
