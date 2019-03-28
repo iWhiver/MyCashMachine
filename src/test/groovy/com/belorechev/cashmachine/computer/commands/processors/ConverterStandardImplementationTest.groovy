@@ -31,13 +31,6 @@ class ConverterStandardImplementationTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    void shouldThrowException_IfThreeFlagsAreFalse() {
-
-        converter.convertSetOfCashToString(
-                setOfCashMocks, "", false, false, false)
-    }
-
-    @Test(expected = IllegalArgumentException.class)
     void shouldThrowException_IfLineSeparatorIsNull() {
 
         converter.convertSetOfCashToString(
@@ -56,6 +49,13 @@ class ConverterStandardImplementationTest {
 
         converter.convertSetOfCashToString(
                 new TreeSet<Cash>(), "", true, true, true)
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    void shouldThrowException_IfThreeFlagsAreFalse() {
+
+        converter.convertSetOfCashToString(
+                setOfCashMocks, "", false, false, false)
     }
 
     @Test

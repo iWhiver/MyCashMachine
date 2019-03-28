@@ -23,7 +23,7 @@ final class Dictionary {
     private static Dictionary dictionary
 
     static List<Integer> getValidBanknotes() {
-        return validBanknotes
+        validBanknotes
     }
 
     void setValidBanknotes(List<Integer> banknotesFromYML) {

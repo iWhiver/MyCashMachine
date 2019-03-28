@@ -30,8 +30,8 @@ class CommandAddNotes extends CommandTemplate {
         Integer number
 
         try {
-            value = Integer.parseInt operation[2]
-            number = Integer.parseInt operation[3]
+            value = operation[2] as Integer
+            number = operation[3] as Integer
         } catch (NumberFormatException e) {
             println e.stackTrace
             return ERROR_STATUS

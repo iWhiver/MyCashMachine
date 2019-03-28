@@ -57,7 +57,7 @@ class FunctionalTests {
 
         assertThat(expectedOutputs.size(), is(commands.size()))
 
-        for (i in 0..<commands.size()) {
+        commands.size().times { i ->
             assertThat(expectedOutputs[i], is(computer.calculate(commands[i])))
         }
     }

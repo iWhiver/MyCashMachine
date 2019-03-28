@@ -15,6 +15,6 @@ class CommandInputByConsole implements CommandInput {
 
     @Override
     String getNext() throws IOException {
-        return br.readLine()
+        br.readLine()
     }
 }

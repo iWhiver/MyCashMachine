@@ -67,33 +67,29 @@ class CashBankTreeMap implements CashBank {
             banknotesForOutput << new Cash(currency, biggestValue, amountOfBanknotesForOperation)
         }
 
-        if (!banknotesForOutput.isEmpty()) {
-            if (!copyBanknotes.isEmpty()) {
-                bank[currency] = copyBanknotes
-            } else {
-                bank.remove(currency)
-            }
-
-            return banknotesForOutput
+        if (!copyBanknotes.isEmpty()) {
+            bank[currency] = copyBanknotes
+        } else {
+            bank.remove(currency)
         }
 
-        return new TreeSet<>()
+        return banknotesForOutput
     }
 
     private static Integer getBiggestAvailableBanknoteValue(int amount, Map<Integer, Integer> copyBanknotesOfCurrency) {
 
-        Integer biggestAvailableBanknoteValue = 0
+        Integer biggestValue = 0
 
         copyBanknotesOfCurrency.each { valueOfBanknotes, amountOfBanknotes ->
 
-            if (biggestAvailableBanknoteValue <= valueOfBanknotes &&
+            if (biggestValue <= valueOfBanknotes &&
                     valueOfBanknotes <= amount &&
                     copyBanknotesOfCurrency[valueOfBanknotes] > 0) {
 
-                biggestAvailableBanknoteValue = valueOfBanknotes
+                biggestValue = valueOfBanknotes
             }
         }
-        return biggestAvailableBanknoteValue
+        biggestValue
     }
 
     @Override
@@ -107,10 +103,10 @@ class CashBankTreeMap implements CashBank {
             }
         }
 
-        return message
+        message
     }
 
     Map<String, Map<Integer, Integer>> getBank() {
-        return bank
+        bank
     }
 }

@@ -58,12 +58,9 @@ final class ValidatorStandardImplementation implements Validator {
             throw new IllegalArgumentException()
         }
 
-        for (Integer validValue in Dictionary.getValidBanknotes()) {
-            if (value == validValue) {
-                return true
-            }
+        return Dictionary.getValidBanknotes().any() { validValue ->
+            value == validValue
         }
-        return false
     }
 
     @Override

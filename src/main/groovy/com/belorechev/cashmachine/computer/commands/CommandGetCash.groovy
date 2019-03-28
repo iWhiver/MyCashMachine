@@ -31,7 +31,7 @@ class CommandGetCash extends CommandTemplate {
         int amount
 
         try {
-            amount = Integer.parseInt operation[2]
+            amount = operation[2] as Integer
         } catch (NumberFormatException e) {
             println e.stackTrace
             return ERROR_STATUS

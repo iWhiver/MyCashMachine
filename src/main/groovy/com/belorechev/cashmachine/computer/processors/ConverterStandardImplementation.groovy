@@ -10,36 +10,26 @@ class ConverterStandardImplementation implements Converter {
         checkValues(cashSet, lineSeparator, useCurrency, useValue, useAmountOfNotes)
         StringBuilder cashSetAsString = new StringBuilder()
 
-        cashSet.each {
+        cashSet.each { cash ->
 
-            boolean addedVariableEarlier = false
+            List listOfVariables = new ArrayList()
 
             if (useCurrency) {
-                cashSetAsString << it.getCurrency()
-                addedVariableEarlier = true
+                listOfVariables << cash.currency
             }
 
             if (useValue) {
-                if (addedVariableEarlier) {
-                    cashSetAsString << " "
-                }
-
-                cashSetAsString << it.getValue()
-                addedVariableEarlier = true
+                listOfVariables << cash.value
             }
 
             if (useAmountOfNotes) {
-                if (addedVariableEarlier) {
-                    cashSetAsString << " "
-                }
-
-                cashSetAsString << it.getAmountOfNotes()
+                listOfVariables << cash.amountOfNotes
             }
 
-            cashSetAsString << lineSeparator
+            cashSetAsString << listOfVariables.join(' ') << lineSeparator
         }
 
-        return cashSetAsString
+        cashSetAsString
     }
 
     private static void checkValues(Set<Cash> cashSet, String lineSeparator, boolean useCurrency, boolean useValue, boolean useAmountOfNotes) {

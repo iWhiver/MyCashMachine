@@ -13,26 +13,25 @@ class Cash implements Comparable<Cash> {
         this.currency = currency
         this.value = value
         this.amountOfNotes = amountOfNotes
-
     }
 
     @Override
     int compareTo(Cash cash) {
 
-        return this.currency <=> cash.currency
+        this.currency <=> cash.currency
                 ?: this.value <=> cash.value
                 ?: this.amountOfNotes <=> cash.amountOfNotes
     }
 
     String getCurrency() {
-        return currency
+        currency
     }
 
     Integer getValue() {
-        return value
+        value
     }
 
     Integer getAmountOfNotes() {
-        return amountOfNotes
+        amountOfNotes
     }
 }
