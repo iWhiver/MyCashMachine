@@ -1,10 +1,16 @@
 package com.belorechev.cashmachine.computer.processors
 
-import com.belorechev.cashmachine.utility.Dictionary
+import org.springframework.beans.factory.annotation.Value
 
-final class ValidatorStandardImplementation implements Validator {
+class ValidatorStandardImplementation implements Validator {
 
     private static final int MAX_AMOUNT_LETTERS_CURRENCY = 3
+
+    @Value('${dictionary.VALID_BANKNOTES}')
+    String[] VALID_BANKNOTES
+
+    @Value('${dictionary.NEW_LINE}')
+    String NEW_LINE
 
     @Override
     boolean isInvalidAmountOfArguments(String[] operation, int expectedAmountOfArguments) {
@@ -58,8 +64,8 @@ final class ValidatorStandardImplementation implements Validator {
             throw new IllegalArgumentException()
         }
 
-        return Dictionary.getValidBanknotes().any() { validValue ->
-            value == validValue
+        return VALID_BANKNOTES.any() { validValue ->
+            value == validValue as Integer
         }
     }
 

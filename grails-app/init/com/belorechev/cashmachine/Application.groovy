@@ -1,4 +1,4 @@
-package mycashmachine
+package com.belorechev.cashmachine
 
 import grails.boot.GrailsApp
 import grails.boot.config.GrailsAutoConfiguration

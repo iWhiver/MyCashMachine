@@ -1,4 +1,4 @@
-package mycashmachine
+package com.belorechev.cashmachine
 
 class BootStrap {
 

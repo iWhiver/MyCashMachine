@@ -2,16 +2,23 @@
 server:
     port: 9090
 
-my:
-    VALID_BANKNOTES:
-        - 1
-        - 10
-        - 100
-        - 1000
-        - 5
-        - 50
-        - 500
-        - 5000
+---
+
+dictionary:
+    OK_STATUS:
+        'OK'
+    ERROR_STATUS:
+        'ERROR'
+    EXIT_STATUS:
+        'Bye!'
+    NEW_LINE:
+        "\r\n"
+    HI_STATUS:
+        "Hello! I am cash machine. Let's do it!"
+
+    VALID_BANKNOTES: 1, 10, 100, 1000, 5, 50, 500, 5000
+
+---
 
 grails:
     profile: web

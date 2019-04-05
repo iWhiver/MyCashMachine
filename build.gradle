@@ -9,6 +9,7 @@ buildscript {
         classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.15.1"
     }
 }
+
 plugins {
     id 'groovy'
     id 'java'
@@ -16,8 +17,7 @@ plugins {
 
 sourceCompatibility = 1.8
 version "0.1"
-group 'com.belorechev'
-
+group 'com.belorechev.cashmachine'
 
 apply plugin: "eclipse"
 apply plugin: "idea"
@@ -30,6 +30,14 @@ repositories {
     mavenLocal()
     maven { url "https://repo.grails.org/grails/core" }
     jcenter()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'com.belorechev.cashmachin.Application'
+        )
+    }
 }
 
 dependencies {
@@ -74,7 +82,6 @@ bootRun {
     String springProfilesActive = 'spring.profiles.active'
     systemProperty springProfilesActive, System.getProperty(springProfilesActive)
 }
-
 
 assets {
     minifyJs = true
