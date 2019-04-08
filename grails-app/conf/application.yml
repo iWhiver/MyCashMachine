@@ -110,46 +110,47 @@ hibernate:
         use_second_level_cache: false
         use_query_cache: false
 
-#dataSource:
-#    pooled: true
-#    jmxExport: true
-#    driverClassName: com.mysql.cj.jdbc.Driver
-#
-#    username: sa
-#    password: ''
-#    url: "jdbc:mysql://localhost:3306/devDb
-#                ?useUnicode=true
-#                &useJDBCCompliantTimezoneShift=true
-#                &useLegacyDatetimeCode=false
-#                &serverTimezone=UTC
-#                &useSSL=false"
-#
-#environments:
-#    development:
-#        dataSource:
-#            dbCreate: update
-#
-#    test:
-#        dataSource:
-#            dbCreate: create
-#    production:
-#        dataSource:
-#            dbCreate: none
-#            properties:
-#                jmxEnabled: true
-#                initialSize: 5
-#                maxActive: 50
-#                minIdle: 5
-#                maxIdle: 25
-#                maxWait: 10000
-#                maxAge: 600000
-#                timeBetweenEvictionRunsMillis: 5000
-#                minEvictableIdleTimeMillis: 60000
-#                validationQuery: SELECT 1
-#                validationQueryTimeout: 3
-#                validationInterval: 15000
-#                testOnBorrow: true
-#                testWhileIdle: true
-#                testOnReturn: false
-#                jdbcInterceptors: ConnectionState
-#                defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
+dataSource:
+    pooled: true
+    jmxExport: true
+    driverClassName: com.mysql.cj.jdbc.Driver
+
+    username: sa
+    password: ''
+    url: "jdbc:mysql://localhost:3306/devDb
+                ?useUnicode=true
+                &useJDBCCompliantTimezoneShift=true
+                &useLegacyDatetimeCode=false
+                &serverTimezone=UTC
+                &useSSL=false
+                &createDatabaseIfNotExist=true"
+
+environments:
+    development:
+        dataSource:
+            dbCreate: update
+
+    test:
+        dataSource:
+            dbCreate: create
+    production:
+        dataSource:
+            dbCreate: update
+            properties:
+                jmxEnabled: true
+                initialSize: 5
+                maxActive: 50
+                minIdle: 5
+                maxIdle: 25
+                maxWait: 10000
+                maxAge: 600000
+                timeBetweenEvictionRunsMillis: 5000
+                minEvictableIdleTimeMillis: 60000
+                validationQuery: SELECT 1
+                validationQueryTimeout: 3
+                validationInterval: 15000
+                testOnBorrow: true
+                testWhileIdle: true
+                testOnReturn: false
+                jdbcInterceptors: ConnectionState
+                defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED

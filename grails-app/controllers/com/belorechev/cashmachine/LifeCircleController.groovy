@@ -26,4 +26,9 @@ class LifeCircleController {
     def clean() {
         render view: 'index', model: [output: '']
     }
+
+    def drop() {
+        Currency.executeUpdate('delete from Currency')
+        redirect(action: 'index')
+    }
 }
