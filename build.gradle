@@ -32,14 +32,6 @@ repositories {
     jcenter()
 }
 
-jar {
-    manifest {
-        attributes(
-                'Main-Class': 'com.belorechev.cashmachin.Application'
-        )
-    }
-}
-
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-logging"
     compile "org.springframework.boot:spring-boot-autoconfigure"

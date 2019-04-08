@@ -8,14 +8,14 @@ import static org.junit.Assert.assertThat
 
 class TestCashBankTreeMap {
 
-    protected CashBankTreeMap cashBank
+    protected CashBankTreeMapService cashBank
     protected Map<String, Map<Integer, Integer>> expectedBank
     protected Map<Integer, Integer> banknotesOfCurrency
 
     @Before
     void init() {
 
-        cashBank = new CashBankTreeMap()
+        cashBank = new CashBankTreeMapService()
         expectedBank = new TreeMap<>()
         banknotesOfCurrency = new TreeMap<>()
     }

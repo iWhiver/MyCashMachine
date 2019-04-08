@@ -6,7 +6,6 @@ import com.belorechev.cashmachine.data.CashBank
 import org.junit.Test
 import org.mockito.Mockito
 
-import static com.belorechev.cashmachine.utility.Dictionary.*
 import static org.hamcrest.CoreMatchers.is
 import static org.junit.Assert.assertThat
 import static org.mockito.Mockito.verify
@@ -16,7 +15,7 @@ class ComputerTest {
 
     private final CashBank cashBankMock = Mockito.mock(CashBank.class)
     private final Validator validatorMock = Mockito.mock(Validator.class)
-    private final Computer computer = new Computer(cashBankMock, validatorMock)
+    private final ComputerService computer = new ComputerService()
 
     @Test
     void shouldReturnErrorStatus_ForEmptyCommand() {

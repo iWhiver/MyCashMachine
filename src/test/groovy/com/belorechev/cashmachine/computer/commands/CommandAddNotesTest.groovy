@@ -5,8 +5,6 @@ import com.belorechev.cashmachine.data.CashBank
 import org.junit.Test
 import org.mockito.Mockito
 
-import static com.belorechev.cashmachine.utility.Dictionary.ERROR_STATUS
-import static com.belorechev.cashmachine.utility.Dictionary.OK_STATUS
 import static org.hamcrest.CoreMatchers.is
 import static org.junit.Assert.assertThat
 import static org.mockito.Mockito.verify
@@ -16,7 +14,7 @@ class CommandAddNotesTest {
 
     private final CashBank cashBankMock = Mockito.mock(CashBank.class)
     private final Validator validatorMock = Mockito.mock(Validator.class)
-    private final CommandTemplate commandAddNotes = new CommandAddNotes(cashBankMock, validatorMock)
+    private final CommandTemplate commandAddNotes = new CommandAddNotesService(cashBankMock, validatorMock)
 
     private final String identification = "+"
     private final Integer expectedAmountOfArguments = 4

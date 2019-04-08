@@ -23,7 +23,7 @@ dictionary:
 grails:
     profile: web
     codegen:
-        defaultPackage: mycashmachine
+        defaultPackage: com.belorechev.cashmachine
     gorm:
         reactor:
             # Whether to translate GORM events into Reactor events

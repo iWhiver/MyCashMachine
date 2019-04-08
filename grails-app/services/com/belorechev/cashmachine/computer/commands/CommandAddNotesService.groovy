@@ -2,16 +2,20 @@ package com.belorechev.cashmachine.computer.commands
 
 import com.belorechev.cashmachine.computer.processors.Validator
 import com.belorechev.cashmachine.data.CashBank
+import org.springframework.beans.factory.annotation.Value
 
-import static com.belorechev.cashmachine.utility.Dictionary.ERROR_STATUS
-import static com.belorechev.cashmachine.utility.Dictionary.OK_STATUS
+class CommandAddNotesService extends CommandTemplate {
 
-class CommandAddNotes extends CommandTemplate {
+    CashBank cashBank
+    Validator validator
 
-    private final CashBank cashBank
-    private final Validator validator
+    @Value('${dictionary.ERROR_STATUS}')
+    String ERROR_STATUS
 
-    CommandAddNotes(CashBank cashBank, Validator validator) {
+    @Value('${dictionary.OK_STATUS}')
+    String OK_STATUS
+
+    CommandAddNotesService(CashBank cashBank, Validator validator) {
         this.cashBank = cashBank
         this.validator = validator
         identification = "+"

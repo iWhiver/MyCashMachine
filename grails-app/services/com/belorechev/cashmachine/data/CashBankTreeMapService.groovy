@@ -1,16 +1,15 @@
 package com.belorechev.cashmachine.data
 
-import com.belorechev.cashmachine.utility.Dictionary
-import org.springframework.beans.factory.annotation.Qualifier
-import org.springframework.stereotype.Component
+import org.springframework.beans.factory.annotation.Value
 
-@Component
-@Qualifier("TreeMap")
-class CashBankTreeMap implements CashBank {
+class CashBankTreeMapService implements CashBank {
 
     private final Map<String, Map<Integer, Integer>> bank
 
-    CashBankTreeMap() {
+    @Value('${dictionary.NEW_LINE}')
+    String NEW_LINE
+
+    CashBankTreeMapService() {
         bank = new TreeMap<>()
     }
 
@@ -99,7 +98,7 @@ class CashBankTreeMap implements CashBank {
 
         bank.each { currency, subBank ->
             subBank.each { value, amountOfNotes ->
-                message << "$currency $value $amountOfNotes$Dictionary.NEW_LINE"
+                message << "$currency $value $amountOfNotes$NEW_LINE"
             }
         }
 
