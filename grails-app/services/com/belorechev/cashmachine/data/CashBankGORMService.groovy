@@ -2,6 +2,7 @@ package com.belorechev.cashmachine.data
 
 import com.belorechev.cashmachine.Currency
 import grails.gorm.transactions.Transactional
+import grails.validation.ValidationException
 import org.springframework.beans.factory.annotation.Value
 
 @Transactional
@@ -11,7 +12,7 @@ class CashBankGORMService implements CashBank {
     String NEW_LINE
 
     @Override
-    void add(String currency, Integer value, Integer number) {
+    void add(String currency, Integer value, Integer number) throws ValidationException{
 
         String sValue = Integer.toString(value)
 
